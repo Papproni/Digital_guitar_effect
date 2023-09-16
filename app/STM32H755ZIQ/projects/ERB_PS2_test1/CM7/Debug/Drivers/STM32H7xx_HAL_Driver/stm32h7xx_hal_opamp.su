@@ -1,0 +1,10 @@
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:479:13:HAL_OPAMP_MspInit	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:274:19:HAL_OPAMP_Init	8	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:494:13:HAL_OPAMP_MspDeInit	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:429:19:HAL_OPAMP_DeInit	16	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:528:19:HAL_OPAMP_Start	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:570:19:HAL_OPAMP_Stop	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:621:19:HAL_OPAMP_SelfCalibrate	32	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:856:19:HAL_OPAMP_Lock	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:905:32:HAL_OPAMP_GetTrimOffset	0	static
+C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp.c:1125:24:HAL_OPAMP_GetState	0	static
