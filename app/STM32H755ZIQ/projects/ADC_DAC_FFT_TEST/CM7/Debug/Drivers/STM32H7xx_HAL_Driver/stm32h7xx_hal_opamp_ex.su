@@ -1,0 +1,2 @@
+C:/ST/workspaces/stm32Audio/ADC_DAC_FFT_TEST/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp_ex.c:77:19:HAL_OPAMPEx_SelfCalibrateAll	56	static
+C:/ST/workspaces/stm32Audio/ADC_DAC_FFT_TEST/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_opamp_ex.c:388:19:HAL_OPAMPEx_Unlock	24	static

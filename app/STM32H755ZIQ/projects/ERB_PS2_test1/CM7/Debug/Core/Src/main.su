@@ -1,0 +1,17 @@
+../Core/Src/main.c:686:13:MX_GPIO_Init	16	static
+../Core/Src/main.c:703:6:MPU_Config	24	static
+../Core/Src/main.c:668:13:MX_DMA_Init	16	static
+../Core/Src/main.c:93:6:HAL_ADC_ConvHalfCpltCallback	0	static
+../Core/Src/main.c:99:6:HAL_DACEx_ConvCpltCallbackCh2	0	static
+../Core/Src/main.c:103:6:HAL_DACEx_ConvHalfCpltCallbackCh2	0	static
+../Core/Src/main.c:141:6:subbandfilter_calculation	24	static
+../Core/Src/main.c:205:6:octave1up	16	static
+../Core/Src/main.c:218:6:HAL_ADC_ConvCpltCallback	8	static
+../Core/Src/main.c:734:6:Error_Handler	0	static,ignoring_inline_asm
+../Core/Src/main.c:505:13:MX_DAC1_Init	48	static
+../Core/Src/main.c:578:13:MX_TIM5_Init	40	static
+../Core/Src/main.c:623:13:MX_TIM8_Init	40	static
+../Core/Src/main.c:446:13:MX_ADC2_Init	40	static
+../Core/Src/main.c:548:13:MX_OPAMP1_Init	8	static
+../Core/Src/main.c:383:6:SystemClock_Config	120	static
+../Core/Src/main.c:247:5:main	16	static,ignoring_inline_asm
