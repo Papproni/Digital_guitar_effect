@@ -496,6 +496,38 @@
     [
       "6997cf63-2615-4e49-9471-e7da1b6bae71",
       ""
+    ],
+    [
+      "2eb2ee8f-ab98-4666-97f0-bfacb073bc88",
+      "Power"
+    ],
+    [
+      "51aec99e-3301-49b6-8e7f-31ba63a05d64",
+      "MCU"
+    ],
+    [
+      "f20dc640-ad21-4977-8df1-611625087c69",
+      "Input_stage"
+    ],
+    [
+      "83920463-7bb1-4088-aad8-702bcdea14ea",
+      "Output_stage"
+    ],
+    [
+      "f3a016e9-328b-49a9-9257-9482800e0ff5",
+      "potentiometers"
+    ],
+    [
+      "9c772890-0bf9-441d-95c7-005162ad7e52",
+      "display"
+    ],
+    [
+      "6424856c-1346-4018-a943-0d16008c9545",
+      "Connectors"
+    ],
+    [
+      "927539c8-c0d0-4950-9b67-385a1cdd80f8",
+      "filters"
     ]
   ],
   "text_variables": {}
