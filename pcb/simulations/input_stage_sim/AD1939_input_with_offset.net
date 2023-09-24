@@ -1,0 +1,33 @@
+* C:\Projects\git\onlab\Digital_guitar_effect\pcb\simulations\input_stage_sim\AD1939_input_with_offset.asc
+V1 -V 0 0
+V2 +V 0 9
+R2 N001 N003 5.7k
+C1 N001 N003 120p
+V3 N008 0 SINE(0 0.25 440) AC 1 Rser=10k
+R3 N004 N001 5.7k
+R4 N005 N004 5.7k
+C2 N005 N004 120p
+C3 N002 N001 4.7µ
+R5 VIN+ N002 220
+C4 N009 N005 4.7µ
+R6 VIN- N009 220
+C5 VIN+ VIN- 100p
+XU1 N007 N003 +V -V N001 OP27
+XU2 N010 N004 +V -V N005 OP27
+R7 VIN- 0 100Meg
+R8 VIN+ 0 100Meg
+C7 0 VIN- 1n
+C8 VIN+ 0 1n
+C9 N006 N007 68n
+C6 N006 0 220p
+R10 N006 N008 100
+V4 Vbias 0 9
+R11 Vbias N007 1Meg
+R12 N007 0 1Meg
+R9 N010 0 1Meg
+R13 N010 Vbias 1Meg
+R14 NC_01 NC_02 5.7k
+.tran 1
+.lib ADI.lib
+.backanno
+.end
