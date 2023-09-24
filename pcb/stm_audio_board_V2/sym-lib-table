@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 0)
+  (lib (name "stm_audio_board_V2-altium-import")(type "KiCad")(uri "${KIPRJMOD}/stm_audio_board_V2-altium-import.kicad_sym")(options "")(descr ""))
+)
