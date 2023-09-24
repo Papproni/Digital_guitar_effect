@@ -530,5 +530,7 @@
       "filters"
     ]
   ],
-  "text_variables": {}
+  "text_variables": {
+    "SHEETTOTAL": "4"
+  }
 }
