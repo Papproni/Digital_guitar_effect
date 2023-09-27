@@ -1,13 +1,11 @@
-Circuit: * C:\Projects\git\onlab\Digital_guitar_effect\pcb\simulations\input_stage_sim\AD1939_input_with_offset.asc
+Circuit: * C:\git\BME\Digital_guitar_effect\pcb\simulations\input_stage_sim\AD1939_input_with_offset.asc
 
-WARNING: Node N004 is floating.
-WARNING: Node N012 is floating.
 WARNING: Node NC_02 is floating.
 
-WARNING: Less than two connections to node nc_01.  This node is used by r14.
-WARNING: Less than two connections to node nc_02.  This node is used by r14.
-WARNING: Less than two connections to node nc_03.  This node is used by r1.
-WARNING: Less than two connections to node nc_04.  This node is used by r7.
+WARNING: Less than two connections to node NC_01.  This node is used by R14.
+WARNING: Less than two connections to node NC_02.  This node is used by R14.
+WARNING: Less than two connections to node NC_03.  This node is used by R1.
+WARNING: Less than two connections to node NC_04.  This node is used by R7.
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
 Gmin = 10
@@ -16,34 +14,39 @@ Gmin = 0.115292
 Gmin = 0.0123794
 Gmin = 0.00132923
 Gmin = 0.000142725
-Gmin = 1.5325e-05
-Gmin = 1.6455e-06
-Gmin = 1.76685e-07
-Gmin = 1.89714e-08
-Gmin = 2.03704e-09
-Gmin = 2.18725e-10
-Gmin = 2.34854e-11
-Gmin = 2.52173e-12
-Gmin = 2.70769e-13
+Gmin = 1.5325e-005
+vernier = 0.5
+Gmin = 2.5711e-006
+vernier = 0.666667
+Gmin = 6.6012e-007
+vernier = 0.888888
+vernier = 1
+Gmin = 8.6905e-008
+Gmin = 9.33136e-009
+Gmin = 1.00195e-009
+Gmin = 1.07583e-010
+Gmin = 1.15517e-011
+Gmin = 1.24035e-012
+Gmin = 1.33182e-013
 Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
 
-Date: Wed Sep 27 17:06:49 2023
-Total elapsed time: 0.915 seconds.
+Date: Wed Sep 27 18:47:59 2023
+Total elapsed time: 0.297 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 55709
-traniter = 55346
-tranpoints = 27674
-accept = 19124
-rejected = 8550
-matrix size = 40
-fillins = 23
+totiter = 2624
+traniter = 2104
+tranpoints = 1053
+accept = 1052
+rejected = 1
+matrix size = 39
+fillins = 19
 solver = Normal
-Avg thread counts: 2.0/2.1/1.1/1.0
-Matrix Compiler1: 3.11 KB object code size  0.6/0.3/[0.2]
-Matrix Compiler2: 4.36 KB object code size  0.3/0.4/[0.3]
+Thread vector: 31.1/17.3[3] 9.0/5.4[3] 5.6/3.7[3] 0.3/1.7[1]  2592/500
+Matrix Compiler1: 2.99 KB object code size  2.2/1.2/[0.5]
+Matrix Compiler2: 4.36 KB object code size  1.4/2.0/[0.5]
 
