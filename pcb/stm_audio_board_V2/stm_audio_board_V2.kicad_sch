@@ -87,6 +87,23 @@
     )
   )
 
+  (sheet (at 97.79 105.41) (size 53.34 25.4) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 8744407a-1e34-4228-b7c6-9fdc39f322d4)
+    (property "Sheetname" "codec" (at 97.79 104.6984 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "codec.kicad_sch" (at 97.79 131.3946 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "stm_audio_board_V2"
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "10"))
+      )
+    )
+  )
+
   (sheet (at 22.86 177.8) (size 46.99 12.7) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
