@@ -94,8 +94,6 @@
     )
   )
 
-  (property "SHEETTOTAL" "4")
-
   (net 0 "")
   (net 1 "GND")
   (net 2 "VDD")

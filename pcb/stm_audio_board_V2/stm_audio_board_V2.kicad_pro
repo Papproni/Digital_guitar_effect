@@ -532,6 +532,10 @@
     [
       "8744407a-1e34-4228-b7c6-9fdc39f322d4",
       "codec"
+    ],
+    [
+      "b200a1dd-4cf8-4022-8ce8-05ae44769d44",
+      "TapTempo (Ext_INT)"
     ]
   ],
   "text_variables": {

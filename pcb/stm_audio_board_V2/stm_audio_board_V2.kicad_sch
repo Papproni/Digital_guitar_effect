@@ -8,11 +8,6 @@
   )
 
 
-  (label "+3.3V" (at 72.39 26.67 0) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify left bottom))
-    (uuid 3bc636d7-2b42-47c3-967a-04bbb473fc95)
-  )
-
   (sheet (at 21.59 36.83) (size 57.15 22.86) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))
@@ -137,6 +132,29 @@
     (instances
       (project "stm_audio_board_V2"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "7"))
+      )
+    )
+  )
+
+  (sheet (at 165.1 41.91) (size 36.83 19.05) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid b200a1dd-4cf8-4022-8ce8-05ae44769d44)
+    (property "Sheetname" "TapTempo (Ext_INT)" (at 165.1 41.1984 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "taptempo.kicad_sch" (at 165.1 61.5446 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (property "Field2" "" (at 165.1 41.91 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Field3" "" (at 165.1 41.91 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (instances
+      (project "stm_audio_board_V2"
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "11"))
       )
     )
   )
