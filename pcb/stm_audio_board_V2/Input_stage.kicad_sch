@@ -941,8 +941,8 @@
     (property "Datasheet" "~" (at 196.85 72.39 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 8ad22dfc-8761-46c5-8310-50026022b64b))
-    (pin "2" (uuid 9864ab8d-57ed-4fe7-a509-9f79f56d58e9))
+    (pin "1" (uuid 89c0703a-a346-46b6-becd-eb794d2fdd2f))
+    (pin "2" (uuid 3fe2a390-00ec-41b5-844c-66b5a2a24845))
     (instances
       (project "stm_audio_board_V2"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
@@ -1086,8 +1086,8 @@
     (property "Datasheet" "~" (at 60.96 78.74 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid e6775397-24d2-4aba-94cf-915018317981))
-    (pin "2" (uuid d476466e-ed6e-4923-a05a-4da38625b480))
+    (pin "1" (uuid aed1f9ab-624c-40f6-9ffe-bc15408783c0))
+    (pin "2" (uuid cae78dcb-3ea5-4afa-988c-2aa63081438f))
     (instances
       (project "stm_audio_board_V2"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
