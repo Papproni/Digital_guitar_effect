@@ -1608,38 +1608,6 @@
     )
   )
 
-  (symbol (lib_id "Device:C_Polarized_Small_US") (at 212.09 48.26 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid ad893cb2-3390-437f-9e62-addd7daf8a0c)
-    (property "Reference" "C63" (at 214.63 47.1932 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "100uF" (at 214.63 49.7332 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7" (at 212.09 48.26 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 212.09 48.26 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid ea1df8b6-924a-4e21-8131-24843fcc5373))
-    (pin "2" (uuid 52a85d67-23fa-41c7-8d0a-cf7009def58f))
-    (instances
-      (project "stm_audio_board_V2"
-        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
-          (reference "C63") (unit 1)
-        )
-        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/83920463-7bb1-4088-aad8-702bcdea14ea"
-          (reference "C26") (unit 1)
-        )
-        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/8744407a-1e34-4228-b7c6-9fdc39f322d4"
-          (reference "C26") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "power:+3.3V") (at 35.56 101.6 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b4c671bc-f02c-4c07-8968-66ef1285bbce)
@@ -1798,6 +1766,38 @@
         )
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/8744407a-1e34-4228-b7c6-9fdc39f322d4"
           (reference "#PWR058") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Device:C_Polarized_Small_US") (at 212.09 48.26 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid dc29b58d-5de2-48b2-92e7-56c68f2a9645)
+    (property "Reference" "C63" (at 214.63 47.1932 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "100uF" (at 214.63 49.7332 0)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Footprint" "Capacitor_SMD:CP_Elec_6.3x7.7" (at 212.09 48.26 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 212.09 48.26 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid ea1df8b6-924a-4e21-8131-24843fcc5373))
+    (pin "2" (uuid 52a85d67-23fa-41c7-8d0a-cf7009def58f))
+    (instances
+      (project "stm_audio_board_V2"
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
+          (reference "C63") (unit 1)
+        )
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/83920463-7bb1-4088-aad8-702bcdea14ea"
+          (reference "C67") (unit 1)
+        )
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/8744407a-1e34-4228-b7c6-9fdc39f322d4"
+          (reference "C26") (unit 1)
         )
       )
     )
