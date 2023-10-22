@@ -18,6 +18,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
+#include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -52,6 +53,8 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+CRC_HandleTypeDef hcrc;
+
 SPI_HandleTypeDef hspi3;
 
 /* USER CODE BEGIN PV */
@@ -62,6 +65,7 @@ SPI_HandleTypeDef hspi3;
 void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_SPI3_Init(void);
+static void MX_CRC_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -131,6 +135,8 @@ Error_Handler();
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   MX_SPI3_Init();
+  MX_CRC_Init();
+  MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -139,6 +145,8 @@ Error_Handler();
   /* USER CODE BEGIN WHILE */
 
   ILI9341_Init();
+
+  MX_TouchGFX_Init();
 //
 //  uint32_t my_display = 0;
 //  BSP_LCD_Init(my_display, LCD_ORIENTATION_PORTRAIT);
@@ -149,22 +157,24 @@ Error_Handler();
 //  status_u8 = BSP_LCD_FillRGBRect(my_display, 0, rect, 100, 100, 10, 1);
   while (1)
   {
-	  ILI9341_Fill_Screen(WHITE);
-	  		ILI9341_Set_Rotation(SCREEN_HORIZONTAL_2);
-	  		ILI9341_Draw_Text("FPS TEST, 40 loop 2 screens", 10, 10, BLACK, 1, WHITE);
-	  		HAL_Delay(2000);
-	  		ILI9341_Fill_Screen(WHITE);
-
-
-	  //----------------------------------------------------------IMAGE EXAMPLE, Snow Tiger
-	  		ILI9341_Fill_Screen(WHITE);
-	  		ILI9341_Set_Rotation(SCREEN_HORIZONTAL_2);
-	  		ILI9341_Draw_Text("RGB Picture", 10, 10, BLACK, 1, WHITE);
-	  		ILI9341_Draw_Text("TIGER", 10, 20, BLACK, 1, WHITE);
-	  		HAL_Delay(2000);
-	  		ILI9341_Draw_Image((const char*)snow_tiger, SCREEN_VERTICAL_2);
-	  		ILI9341_Set_Rotation(SCREEN_VERTICAL_1);
-	  		HAL_Delay(10000);
+//	  ILI9341_Fill_Screen(WHITE);
+//	  		ILI9341_Set_Rotation(SCREEN_HORIZONTAL_2);
+//	  		ILI9341_Draw_Text("FPS TEST, 40 loop 2 screens", 10, 10, BLACK, 1, WHITE);
+//	  		HAL_Delay(2000);
+//	  		ILI9341_Fill_Screen(WHITE);
+//
+//
+//	  //----------------------------------------------------------IMAGE EXAMPLE, Snow Tiger
+//	  		ILI9341_Fill_Screen(WHITE);
+//	  		ILI9341_Set_Rotation(SCREEN_HORIZONTAL_2);
+//	  		ILI9341_Draw_Text("RGB Picture", 10, 10, BLACK, 1, WHITE);
+//	  		ILI9341_Draw_Text("TIGER", 10, 20, BLACK, 1, WHITE);
+//	  		HAL_Delay(2000);
+//	  		ILI9341_Draw_Image((const char*)snow_tiger, SCREEN_VERTICAL_2);
+//	  		ILI9341_Set_Rotation(SCREEN_VERTICAL_1);
+//	  		HAL_Delay(10000);
+	  MX_TouchGFX_Process();
+	  HAL_Delay(2000);
 
 
 
@@ -172,6 +182,7 @@ Error_Handler();
 
     /* USER CODE END WHILE */
 
+  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */
@@ -241,6 +252,37 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief CRC Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_CRC_Init(void)
+{
+
+  /* USER CODE BEGIN CRC_Init 0 */
+
+  /* USER CODE END CRC_Init 0 */
+
+  /* USER CODE BEGIN CRC_Init 1 */
+
+  /* USER CODE END CRC_Init 1 */
+  hcrc.Instance = CRC;
+  hcrc.Init.DefaultPolynomialUse = DEFAULT_POLYNOMIAL_ENABLE;
+  hcrc.Init.DefaultInitValueUse = DEFAULT_INIT_VALUE_ENABLE;
+  hcrc.Init.InputDataInversionMode = CRC_INPUTDATA_INVERSION_NONE;
+  hcrc.Init.OutputDataInversionMode = CRC_OUTPUTDATA_INVERSION_DISABLE;
+  hcrc.InputDataFormat = CRC_INPUTDATA_FORMAT_BYTES;
+  if (HAL_CRC_Init(&hcrc) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN CRC_Init 2 */
+
+  /* USER CODE END CRC_Init 2 */
+
+}
+
+/**
   * @brief SPI3 Initialization Function
   * @param None
   * @retval None
@@ -267,7 +309,7 @@ static void MX_SPI3_Init(void)
   hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
-  hspi3.Init.CRCPolynomial = 7;
+  hspi3.Init.CRCPolynomial = 0x0;
   hspi3.Init.NSSPMode = SPI_NSS_PULSE_ENABLE;
   hspi3.Init.NSSPolarity = SPI_NSS_POLARITY_LOW;
   hspi3.Init.FifoThreshold = SPI_FIFO_THRESHOLD_01DATA;
