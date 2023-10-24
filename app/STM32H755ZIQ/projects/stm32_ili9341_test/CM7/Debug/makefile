@@ -9,20 +9,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include TouchGFX/target/generated/subdir.mk
--include TouchGFX/target/subdir.mk
--include TouchGFX/simulator/subdir.mk
--include TouchGFX/gui/src/screen_screen/subdir.mk
--include TouchGFX/gui/src/model/subdir.mk
--include TouchGFX/gui/src/common/subdir.mk
--include TouchGFX/generated/texts/src/subdir.mk
--include TouchGFX/generated/simulator/src/video/subdir.mk
--include TouchGFX/generated/simulator/src/subdir.mk
--include TouchGFX/generated/images/src/subdir.mk
--include TouchGFX/generated/gui_generated/src/screen_screen/subdir.mk
--include TouchGFX/generated/gui_generated/src/common/subdir.mk
--include TouchGFX/generated/fonts/src/subdir.mk
--include TouchGFX/App/subdir.mk
 -include Drivers/STM32H7xx_HAL_Driver/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/ILI9341/subdir.mk

@@ -36,18 +36,4 @@ Core/Src/ILI9341 \
 Core/Src \
 Core/Startup \
 Drivers/STM32H7xx_HAL_Driver \
-TouchGFX/App \
-TouchGFX/generated/fonts/src \
-TouchGFX/generated/gui_generated/src/common \
-TouchGFX/generated/gui_generated/src/screen_screen \
-TouchGFX/generated/images/src \
-TouchGFX/generated/simulator/src \
-TouchGFX/generated/simulator/src/video \
-TouchGFX/generated/texts/src \
-TouchGFX/gui/src/common \
-TouchGFX/gui/src/model \
-TouchGFX/gui/src/screen_screen \
-TouchGFX/simulator \
-TouchGFX/target \
-TouchGFX/target/generated \
 

@@ -1,5 +1,5 @@
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_pwr.o: \
- C:/Projects/STM32H755/display_workspace/stm32_ili9341_test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c \
+ C:/Projects/git/onlab/Digital_guitar_effect/app/STM32H755ZIQ/projects/stm32_ili9341_test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_pwr.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \

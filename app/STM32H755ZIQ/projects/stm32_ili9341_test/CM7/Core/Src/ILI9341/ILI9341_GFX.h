@@ -64,4 +64,7 @@ void ILI9341_Draw_Filled_Rectangle_Size_Text(uint16_t X0, uint16_t Y0, uint16_t 
 //65K colour (2Bytes / Pixel)
 void ILI9341_Draw_Image(const char* Image_Array, uint8_t Orientation);
 
+void touchgfxDisplayDriverTransmitBlock(uint8_t* pixels, uint16_t x, uint16_t y, uint16_t w, uint16_t h);
+uint32_t touchgfxDisplayDriverTransmitActive(void);
+
 #endif

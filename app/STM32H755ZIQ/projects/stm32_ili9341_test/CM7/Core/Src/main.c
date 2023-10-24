@@ -18,10 +18,12 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "app_touchgfx.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+
+
+
 //#include "ili9341.h"
 
 //#include "ILI9341_Touchscreen.h"
@@ -105,7 +107,9 @@ int main(void)
   HAL_Init();
 
   /* USER CODE BEGIN Init */
-
+//  GraphicsInit();
+//  TouchCalibrate();
+//  GraphicsClear(BLUE);
   /* USER CODE END Init */
 
   /* Configure the system clock */
@@ -136,7 +140,6 @@ Error_Handler();
   MX_GPIO_Init();
   MX_SPI3_Init();
   MX_CRC_Init();
-  MX_TouchGFX_Init();
   /* USER CODE BEGIN 2 */
 
   /* USER CODE END 2 */
@@ -146,7 +149,7 @@ Error_Handler();
 
   ILI9341_Init();
 
-  MX_TouchGFX_Init();
+//  MX_TouchGFX_Init();
 //
 //  uint32_t my_display = 0;
 //  BSP_LCD_Init(my_display, LCD_ORIENTATION_PORTRAIT);
@@ -173,7 +176,9 @@ Error_Handler();
 //	  		ILI9341_Draw_Image((const char*)snow_tiger, SCREEN_VERTICAL_2);
 //	  		ILI9341_Set_Rotation(SCREEN_VERTICAL_1);
 //	  		HAL_Delay(10000);
-	  MX_TouchGFX_Process();
+//	  MX_TouchGFX_Process();
+
+
 	  HAL_Delay(2000);
 
 
@@ -182,7 +187,6 @@ Error_Handler();
 
     /* USER CODE END WHILE */
 
-  MX_TouchGFX_Process();
     /* USER CODE BEGIN 3 */
   }
   /* USER CODE END 3 */

@@ -1,5 +1,5 @@
 Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o: \
- C:/Projects/STM32H755/display_workspace/stm32_ili9341_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
+ C:/Projects/git/onlab/Digital_guitar_effect/app/STM32H755ZIQ/projects/stm32_ili9341_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h755xx.h \
  ../../Drivers/CMSIS/Include/core_cm4.h \

@@ -357,5 +357,30 @@ void ILI9341_Draw_Image(const char* Image_Array, uint8_t Orientation)
 		HAL_GPIO_WritePin(LCD_CS_PORT, LCD_CS_PIN, GPIO_PIN_SET);
 	}
 }
+/*-----------------------TOUCHGFX STUFF .................................*/
 
+extern void DisplayDriver_TransferCompleteCallback();
+
+static uint8_t isTransmittingData = 0;
+
+uint32_t touchgfxDisplayDriverTransmitActive(void)
+{
+	return isTransmittingData;
+}
+
+void touchgfxDisplayDriverTransmitBlock(uint8_t* pixels, uint16_t x, uint16_t y, uint16_t w, uint16_t h)
+{
+	isTransmittingData = 1;
+	ILI9341_SetWindow(x, y, x+w-1, y+h-1);
+	ILI9341_DrawBitmap(w, h, pixels);
+}
+
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi)
+{
+	if (hspi->Instance == SPI1) {
+		ILI9341_EndOfDrawBitmap();
+		isTransmittingData = 0;
+		DisplayDriver_TransferCompleteCallback();
+	}
+}
 
