@@ -21,21 +21,21 @@ Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
 
-Date: Sun Oct  1 13:15:09 2023
-Total elapsed time: 0.105 seconds.
+Date: Thu Nov  2 14:21:23 2023
+Total elapsed time: 0.071 seconds.
 
 tnom = 27
 temp = 27
 method = modified trap
-totiter = 2510
-traniter = 2132
-tranpoints = 1067
-accept = 1061
-rejected = 6
-matrix size = 20
+totiter = 2502
+traniter = 2124
+tranpoints = 1063
+accept = 1059
+rejected = 4
+matrix size = 19
 fillins = 4
 solver = Normal
 Avg thread counts: 2.0/3.0/3.0/2.0
-Matrix Compiler1:      67 opcodes  0.2/[0.1]/0.1
-Matrix Compiler2: 1.76 KB object code size  0.1/0.2/[0.1]
+Matrix Compiler1:      64 opcodes  0.2/[0.1]/0.2
+Matrix Compiler2: 1.68 KB object code size  0.2/0.1/[0.1]
 
