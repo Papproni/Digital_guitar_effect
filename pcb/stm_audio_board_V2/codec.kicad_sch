@@ -1474,7 +1474,7 @@
     (property "Value" "10uF tantal" (at 167.64 104.3432 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" (at 165.1 102.87 0)
+    (property "Footprint" "Capacitor_Tantalum_SMD:CP_EIA-6032-28_Kemet-C_Pad2.25x2.35mm_HandSolder" (at 165.1 102.87 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 165.1 102.87 0)
