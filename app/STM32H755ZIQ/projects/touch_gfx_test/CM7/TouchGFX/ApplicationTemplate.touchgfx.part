@@ -22,7 +22,7 @@
     "SubFamily": "STM32H745/755",
     "Platform": "m7",
     "Toolchain": "STM32CubeIDE",
-    "ProjectFile": "../../stm32_ili9341_touch_gfx_test.ioc",
+    "ProjectFile": "../.cproject",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [
     ],

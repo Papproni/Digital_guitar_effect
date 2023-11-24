@@ -2,9 +2,40 @@
   "Application": {
     "Screens": [
       {
-        "Name": "screen",
-        "Components": [],
-        "Interactions": []
+        "Name": "MyScreen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "image1",
+            "Width": 320,
+            "Height": 240,
+            "RelativeFilename": "__generated\\alternate_theme_images_backgrounds_320x240_rays.png"
+          },
+          {
+            "Type": "Slider",
+            "Name": "slider1",
+            "X": 30,
+            "Y": 42,
+            "Width": 232,
+            "Height": 32,
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_track_small.png",
+            "BackgroundSelected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "Indicator": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_rounded_dark.png",
+            "BackgroundX": 16,
+            "BackgroundY": 11,
+            "IndicatorMax": 200,
+            "ValueMax": 100
+          }
+        ],
+        "Interactions": [],
+        "CustomActions": [
+          {
+            "Name": "action1",
+            "HasValue": true,
+            "ValueType": "int8_t"
+          }
+        ]
       }
     ],
     "CustomContainerDefinitions": [],
@@ -14,7 +45,7 @@
       "Height": 240
     },
     "SelectedColorDepth": 16,
-    "StartupScreenName": "screen",
+    "StartupScreenName": "MyScreen",
     "SelectedStartupLanguage": "GB",
     "TouchGfxPath": "../Middlewares/ST/touchgfx",
     "UIPath": ".",
@@ -55,7 +86,7 @@
     "SubFamily": "STM32H745/755",
     "Toolchain": "STM32CubeIDE",
     "Platform": "m7",
-    "ProjectFile": "../../stm32_ili9341_touch_gfx_test.ioc",
+    "ProjectFile": "../.cproject",
     "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
     "OptionalComponents": [],
     "AdditionalFeatures": []
