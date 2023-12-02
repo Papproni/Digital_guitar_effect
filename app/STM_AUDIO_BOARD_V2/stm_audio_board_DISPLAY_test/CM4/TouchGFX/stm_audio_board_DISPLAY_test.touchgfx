@@ -1,0 +1,219 @@
+{
+  "Application": {
+    "Screens": [
+      {
+        "Name": "mainScreen",
+        "Components": [
+          {
+            "Type": "Image",
+            "Name": "BackGround",
+            "Width": 320,
+            "Height": 240,
+            "RelativeFilename": "red-dark-stripes-abstract.png"
+          },
+          {
+            "Type": "Box",
+            "Name": "box1",
+            "Width": 320,
+            "Height": 52,
+            "Color": {
+              "Red": 46,
+              "Green": 25,
+              "Blue": 25
+            },
+            "Alpha": 109
+          },
+          {
+            "Type": "TextArea",
+            "Name": "EffectName",
+            "X": 39,
+            "Y": 21,
+            "Width": 243,
+            "Height": 24,
+            "TextId": "__SingleUse_NHCZ",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255,
+              "Green": 255,
+              "Blue": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "Slider",
+            "Name": "slider1",
+            "X": 82,
+            "Y": 60,
+            "Width": 232,
+            "Height": 32,
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "BackgroundSelected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "Indicator": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_rounded_dark.png",
+            "BackgroundX": 16,
+            "BackgroundY": 11,
+            "IndicatorMax": 200,
+            "ValueMax": 100
+          },
+          {
+            "Type": "Slider",
+            "Name": "slider2",
+            "X": 82,
+            "Y": 104,
+            "Width": 232,
+            "Height": 32,
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "BackgroundSelected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "Indicator": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_rounded_dark.png",
+            "BackgroundX": 16,
+            "BackgroundY": 11,
+            "IndicatorMax": 200,
+            "ValueMax": 100
+          },
+          {
+            "Type": "Slider",
+            "Name": "slider3",
+            "X": 82,
+            "Y": 149,
+            "Width": 232,
+            "Height": 32,
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "BackgroundSelected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "Indicator": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_rounded_dark.png",
+            "BackgroundX": 16,
+            "BackgroundY": 11,
+            "IndicatorMax": 200,
+            "ValueMax": 100
+          },
+          {
+            "Type": "Slider",
+            "Name": "slider4",
+            "X": 82,
+            "Y": 196,
+            "Width": 232,
+            "Height": 32,
+            "IsHorizontalSlider": true,
+            "BackgroundUnselected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "BackgroundSelected": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_filler_small.png",
+            "Indicator": "__generated\\alternate_theme_images_widgets_slider_horizontal_thick_rounded_dark.png",
+            "BackgroundX": 16,
+            "BackgroundY": 11,
+            "IndicatorMax": 200,
+            "ValueMax": 100
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1",
+            "X": 1,
+            "Y": 66,
+            "Width": 77,
+            "Height": 24,
+            "TextId": "__SingleUse_GK98",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1_1",
+            "Y": 110,
+            "Width": 77,
+            "Height": 24,
+            "TextId": "__SingleUse_RPP3",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1_2",
+            "X": 1,
+            "Y": 155,
+            "Width": 77,
+            "Height": 24,
+            "TextId": "__SingleUse_R6X8",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          },
+          {
+            "Type": "TextArea",
+            "Name": "textArea1_2_1",
+            "X": 1,
+            "Y": 202,
+            "Width": 77,
+            "Height": 24,
+            "TextId": "__SingleUse_28VV",
+            "TextRotation": "0",
+            "Color": {
+              "Red": 255
+            },
+            "AutoSize": true
+          }
+        ],
+        "Interactions": []
+      }
+    ],
+    "CustomContainerDefinitions": [],
+    "Name": "MyApplication",
+    "Resolution": {
+      "Width": 320,
+      "Height": 240
+    },
+    "SelectedColorDepth": 16,
+    "StartupScreenName": "mainScreen",
+    "SelectedStartupLanguage": "GB",
+    "TouchGfxPath": "../Middlewares/ST/touchgfx",
+    "UIPath": ".",
+    "AvailableColorDepths": [
+      16
+    ],
+    "AvailableLCDs": {
+      "16": "LCD16bpp"
+    },
+    "AvailableSections": [
+      "ExtFlashSection",
+      "IntFlashSection"
+    ],
+    "AvailableResolutions": [
+      {
+        "Width": 320,
+        "Height": 240
+      }
+    ],
+    "PhysicalButtons": [],
+    "FrameworkFeatures": {
+      "LCD16bpp": {
+        "Id": "LCD16bpp",
+        "IsEnabled": true
+      }
+    },
+    "GenerateAssetsCommand": "make -f simulator/gcc/Makefile assets -j8",
+    "PostGenerateCommand": "touchgfx update_project --project-file=simulator/msvs/Application.vcxproj",
+    "PostGenerateTargetCommand": "touchgfx update_project",
+    "CompileSimulatorCommand": "make -f simulator/gcc/Makefile -j8",
+    "RunSimulatorCommand": "build\\bin\\simulator.exe",
+    "LandscapeSkinX": 0,
+    "LandscapeSkinY": 0,
+    "PortraitSkinX": 0,
+    "PortraitSkinY": 0,
+    "DisplayOrientation": "Landscape",
+    "Family": "STM32H7",
+    "SubFamily": "STM32H747/757",
+    "Toolchain": "STM32CubeIDE",
+    "Platform": "m4",
+    "ProjectFile": "../.cproject",
+    "OptionalComponentsRoot": "../Middlewares/ST/touchgfx_components",
+    "OptionalComponents": [],
+    "AdditionalFeatures": []
+  },
+  "Version": "4.22.1"
+}

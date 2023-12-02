@@ -1,0 +1,1 @@
+This library contains the stm projects for the STM_AUDIO_BOARD_V2
