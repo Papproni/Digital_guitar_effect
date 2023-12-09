@@ -6,4 +6,6 @@
 ../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp:11:13:virtual mainScreenView::~mainScreenView()	16	static
 ../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:3:1:mainScreenView::mainScreenView()	16	static
 ../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:8:6:virtual void mainScreenView::setupScreen()	16	static
-../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:13:6:virtual void mainScreenView::tearDownScreen()	16	static
+../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:14:6:virtual void mainScreenView::tearDownScreen()	16	static
+../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:22:6:void mainScreenView::set_parameter_value(uint8_t, uint8_t)	16	static
+../TouchGFX/gui/src/mainscreen_screen/mainScreenView.cpp:29:6:virtual void mainScreenView::setSlider1Value(uint8_t)	16	static

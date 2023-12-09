@@ -1,5 +1,5 @@
 Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o: \
- C:/ST/workspaces/stm32Audio/stm_audio_board_DISPLAY_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
+ C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_DISPLAY_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h747xx.h \
  ../../Drivers/CMSIS/Include/core_cm7.h \

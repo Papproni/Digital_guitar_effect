@@ -28,7 +28,7 @@ c:\st\stm32cubeide_1.11.2\stm32cubeide\plugins\com.st.stm32cube.ide.mcu.external
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:47:5:touchgfx::MVPApplication::MVPApplication()	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:59:18:virtual void touchgfx::MVPApplication::handlePendingScreenTransition()	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:73:10:void touchgfx::MVPApplication::evaluatePendingScreenTransition()	16	static
-../TouchGFX/gui/include/gui/model/Model.hpp:11:10:void Model::bind(ModelListener*)	16	static
+../TouchGFX/gui/include/gui/model/Model.hpp:13:10:void Model::bind(ModelListener*)	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:43:7:touchgfx::MVPApplication::~MVPApplication()	16	static
 ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp:43:7:virtual touchgfx::MVPApplication::~MVPApplication()	16	static
 ../TouchGFX/generated/gui_generated/include/gui_generated/common/FrontendApplicationBase.hpp:16:13:FrontendApplicationBase::~FrontendApplicationBase()	16	static

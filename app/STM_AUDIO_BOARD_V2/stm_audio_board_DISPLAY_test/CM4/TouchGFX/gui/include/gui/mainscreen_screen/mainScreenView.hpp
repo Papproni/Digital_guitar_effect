@@ -12,7 +12,9 @@ public:
     virtual void setupScreen();
     virtual void tearDownScreen();
     void set_parameter_value(uint8_t val_u,uint8_t sliderID_u); // sets slider value
+    virtual void setSlider1Value(uint8_t val);
 protected:
+
 private:
     uint8_t param1_u = 25;
     uint8_t param2_u = 30;

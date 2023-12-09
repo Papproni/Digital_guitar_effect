@@ -26,6 +26,7 @@ public:
     virtual void deactivate();
 
     virtual ~mainScreenPresenter() {}
+    virtual void setSlider1Value(uint8_t val);
 
 private:
     mainScreenPresenter();

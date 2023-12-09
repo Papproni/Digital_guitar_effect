@@ -43,22 +43,11 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../Middlewares/ST/touchgfx/framework/include/mvp/MVPApplication.hpp \
  ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp \
  ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp \
- ../TouchGFX/gui/include/gui/model/Model.hpp \
- ../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp \
- ../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp \
- ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
- ../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp \
- ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Slider.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp \
- ../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp \
+ ../TouchGFX/gui/include/gui/model/Model.hpp ../Core/Inc/main.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
+ ../Core/Inc/stm32h7xx_hal_conf.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h747xx.h \
  ../../Drivers/CMSIS/Include/core_cm4.h \
@@ -67,10 +56,6 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../Drivers/CMSIS/Include/cmsis_gcc.h \
  ../../Drivers/CMSIS/Include/mpu_armv7.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h \
- ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
- ../Core/Inc/stm32h7xx_hal_conf.h \
- ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \
- ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h \
@@ -92,7 +77,22 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h \
- ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h
+ ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h \
+ ../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp \
+ ../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp \
+ ../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp \
+ ../TouchGFX/gui/include/gui/model/ModelListener.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Slider.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp \
+ ../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp
 ../TouchGFX/target/generated/TouchGFXGeneratedHAL.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/HAL.hpp:
 ../Middlewares/ST/touchgfx/framework/include/platform/core/MCUInstrumentation.hpp:
@@ -137,21 +137,11 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../Middlewares/ST/touchgfx/framework/include/mvp/Presenter.hpp:
 ../Middlewares/ST/touchgfx/framework/include/touchgfx/Screen.hpp:
 ../TouchGFX/gui/include/gui/model/Model.hpp:
-../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp:
-../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp:
-../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
-../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp:
-../TouchGFX/gui/include/gui/model/ModelListener.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Slider.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp:
-../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp:
+../Core/Inc/main.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
+../Core/Inc/stm32h7xx_hal_conf.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
+../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h:
 ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h:
 ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h747xx.h:
 ../../Drivers/CMSIS/Include/core_cm4.h:
@@ -160,10 +150,6 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../../Drivers/CMSIS/Include/cmsis_gcc.h:
 ../../Drivers/CMSIS/Include/mpu_armv7.h:
 ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/system_stm32h7xx.h:
-../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
-../Core/Inc/stm32h7xx_hal_conf.h:
-../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h:
-../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_def.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/Legacy/stm32_hal_legacy.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_gpio.h:
@@ -186,3 +172,18 @@ TouchGFX/target/generated/TouchGFXGeneratedHAL.o: \
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_spi_ex.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_tim_ex.h:
+../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenView.hpp:
+../TouchGFX/generated/gui_generated/include/gui_generated/mainscreen_screen/mainScreenViewBase.hpp:
+../Middlewares/ST/touchgfx/framework/include/mvp/View.hpp:
+../TouchGFX/gui/include/gui/mainscreen_screen/mainScreenPresenter.hpp:
+../TouchGFX/gui/include/gui/model/ModelListener.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Box.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/Image.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/widgets/TextArea.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/TypedText.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Texts.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/containers/Slider.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintImpl.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/Paint.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/hal/PaintRGB565Impl.hpp:
+../Middlewares/ST/touchgfx/framework/include/touchgfx/Color.hpp:

@@ -16,3 +16,8 @@ void mainScreenPresenter::deactivate()
 {
 
 }
+
+
+void mainScreenPresenter::setSlider1Value(uint8_t val){
+	view.setSlider1Value(val);
+}

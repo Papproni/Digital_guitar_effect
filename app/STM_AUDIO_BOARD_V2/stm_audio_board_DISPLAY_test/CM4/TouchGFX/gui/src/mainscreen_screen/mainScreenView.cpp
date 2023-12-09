@@ -8,12 +8,15 @@ mainScreenView::mainScreenView()
 void mainScreenView::setupScreen()
 {
     mainScreenViewBase::setupScreen();
+
 }
 
 void mainScreenView::tearDownScreen()
 {
     mainScreenViewBase::tearDownScreen();
 }
+
+
 
 // test if value changes on screen
 void mainScreenView::set_parameter_value(uint8_t val_u,uint8_t sliderID_u){
@@ -23,3 +26,7 @@ void mainScreenView::set_parameter_value(uint8_t val_u,uint8_t sliderID_u){
 	this->slider4.setValue(90);
 }
 
+void mainScreenView::setSlider1Value(uint8_t val){
+	slider1.setValue(val);
+	slider1.invalidate();
+}

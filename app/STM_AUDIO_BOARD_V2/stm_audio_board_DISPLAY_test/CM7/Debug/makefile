@@ -76,8 +76,8 @@ all: main-build
 main-build: stm_audio_board_DISPLAY_test_CM7.elf secondary-outputs
 
 # Tool invocations
-stm_audio_board_DISPLAY_test_CM7.elf stm_audio_board_DISPLAY_test_CM7.map: $(OBJS) $(USER_OBJS) C:\ST\workspaces\stm32Audio\stm_audio_board_DISPLAY_test\CM7\STM32H747IGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "stm_audio_board_DISPLAY_test_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\ST\workspaces\stm32Audio\stm_audio_board_DISPLAY_test\CM7\STM32H747IGTX_FLASH.ld" -Wl,-Map="stm_audio_board_DISPLAY_test_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+stm_audio_board_DISPLAY_test_CM7.elf stm_audio_board_DISPLAY_test_CM7.map: $(OBJS) $(USER_OBJS) C:\Projects\git\onlab\Digital_guitar_effect\app\STM_AUDIO_BOARD_V2\stm_audio_board_DISPLAY_test\CM7\STM32H747IGTX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "stm_audio_board_DISPLAY_test_CM7.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Projects\git\onlab\Digital_guitar_effect\app\STM_AUDIO_BOARD_V2\stm_audio_board_DISPLAY_test\CM7\STM32H747IGTX_FLASH.ld" -Wl,-Map="stm_audio_board_DISPLAY_test_CM7.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
