@@ -1,5 +1,6 @@
 
 
+
 typedef struct param_pot_st{
     uint8_t pot1;
     uint8_t pot2;
@@ -12,5 +13,5 @@ typedef struct param_pot_st{
 struct guitarFX{
     param_pot_tst param_st;
 
-    void *(void*)signal_process;
+    void  (*signal_processing)();
 }

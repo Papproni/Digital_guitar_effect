@@ -1,2 +1,2 @@
-C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c:177:6:SystemInit	0	static
-C:/ST/workspaces/stm32Audio/ERB_PS2_test1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c:323:6:SystemCoreClockUpdate	4	static
+C:/Users/Aron/Documents/GitHub/Digital_guitar_effect/app/STM32H755ZIQ/projects/ERB_PS2_test1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c:177:6:SystemInit	0	static
+C:/Users/Aron/Documents/GitHub/Digital_guitar_effect/app/STM32H755ZIQ/projects/ERB_PS2_test1/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c:323:6:SystemCoreClockUpdate	4	static
