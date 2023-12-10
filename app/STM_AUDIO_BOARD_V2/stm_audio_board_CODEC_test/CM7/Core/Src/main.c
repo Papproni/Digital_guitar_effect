@@ -44,6 +44,9 @@
 
 /* Private variables ---------------------------------------------------------*/
 
+I2S_HandleTypeDef hi2s1;
+I2S_HandleTypeDef hi2s2;
+
 SPI_HandleTypeDef hspi3;
 
 /* USER CODE BEGIN PV */
@@ -55,6 +58,8 @@ void SystemClock_Config(void);
 static void MX_GPIO_Init(void);
 static void MX_DMA_Init(void);
 static void MX_SPI3_Init(void);
+static void MX_I2S1_Init(void);
+static void MX_I2S2_Init(void);
 /* USER CODE BEGIN PFP */
 
 /* USER CODE END PFP */
@@ -123,7 +128,11 @@ HAL_HSEM_Release(HSEM_ID_0,0);
   MX_GPIO_Init();
   MX_DMA_Init();
   MX_SPI3_Init();
+  MX_I2S1_Init();
+  MX_I2S2_Init();
   /* USER CODE BEGIN 2 */
+
+  ad1939_init(&hspi3);
 
   /* USER CODE END 2 */
 
@@ -131,25 +140,25 @@ HAL_HSEM_Release(HSEM_ID_0,0);
   /* USER CODE BEGIN WHILE */
 
 
-	uint8_t AD1939_GLOBAL_ADDRESS = 0x08;
-	uint8_t AD1939_RW_BIT 		= 0; // 1 READ 0 WRITE
-	uint8_t AD1939_REG_ADDRESS 	= 0;// 0 CLOCK CONTROL 0
-	uint8_t AD1939_DATA 	 	= 134;// 0 CLOCK CONTROL 0A
-	uint8_t TXdata[3];
-	uint8_t RXdata[3];
+//	uint8_t AD1939_GLOBAL_ADDRESS = 0x08;
+//	uint8_t AD1939_RW_BIT 		= 0; // 1 READ 0 WRITE
+//	uint8_t AD1939_REG_ADDRESS 	= 0;// 0 CLOCK CONTROL 0
+//	uint8_t AD1939_DATA 	 	= 134;// 0 CLOCK CONTROL 0A
+//	uint8_t TXdata[3];
+//	uint8_t RXdata[3];
 
   while (1)
   {
 
-	  TXdata[0] = AD1939_GLOBAL_ADDRESS+AD1939_RW_BIT;
-	  TXdata[1] = AD1939_REG_ADDRESS;
-	  TXdata[2] = AD1939_DATA;
-	 // CS LOW
-	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 0);
-	 // SPI SEND CMD
-	 HAL_SPI_TransmitReceive(&hspi3, TXdata, RXdata, 3, 1000);
-	 // CS HIGH
-	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 1);
+//	  TXdata[0] = AD1939_GLOBAL_ADDRESS+AD1939_RW_BIT;
+//	  TXdata[1] = AD1939_REG_ADDRESS;
+//	  TXdata[2] = AD1939_DATA;
+//	 // CS LOW
+//	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 0);
+//	 // SPI SEND CMD
+//	 HAL_SPI_TransmitReceive(&hspi3, TXdata, RXdata, 3, 1000);
+//	 // CS HIGH
+//	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 1);
 
 
 
@@ -190,7 +199,7 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLM = 2;
   RCC_OscInitStruct.PLL.PLLN = 12;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 50;
+  RCC_OscInitStruct.PLL.PLLQ = 2;
   RCC_OscInitStruct.PLL.PLLR = 2;
   RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOMEDIUM;
@@ -220,6 +229,78 @@ void SystemClock_Config(void)
 }
 
 /**
+  * @brief I2S1 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2S1_Init(void)
+{
+
+  /* USER CODE BEGIN I2S1_Init 0 */
+
+  /* USER CODE END I2S1_Init 0 */
+
+  /* USER CODE BEGIN I2S1_Init 1 */
+
+  /* USER CODE END I2S1_Init 1 */
+  hi2s1.Instance = SPI1;
+  hi2s1.Init.Mode = I2S_MODE_MASTER_RX;
+  hi2s1.Init.Standard = I2S_STANDARD_PHILIPS;
+  hi2s1.Init.DataFormat = I2S_DATAFORMAT_24B;
+  hi2s1.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+  hi2s1.Init.AudioFreq = I2S_AUDIOFREQ_48K;
+  hi2s1.Init.CPOL = I2S_CPOL_LOW;
+  hi2s1.Init.FirstBit = I2S_FIRSTBIT_MSB;
+  hi2s1.Init.WSInversion = I2S_WS_INVERSION_DISABLE;
+  hi2s1.Init.Data24BitAlignment = I2S_DATA_24BIT_ALIGNMENT_RIGHT;
+  hi2s1.Init.MasterKeepIOState = I2S_MASTER_KEEP_IO_STATE_DISABLE;
+  if (HAL_I2S_Init(&hi2s1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2S1_Init 2 */
+
+  /* USER CODE END I2S1_Init 2 */
+
+}
+
+/**
+  * @brief I2S2 Initialization Function
+  * @param None
+  * @retval None
+  */
+static void MX_I2S2_Init(void)
+{
+
+  /* USER CODE BEGIN I2S2_Init 0 */
+
+  /* USER CODE END I2S2_Init 0 */
+
+  /* USER CODE BEGIN I2S2_Init 1 */
+
+  /* USER CODE END I2S2_Init 1 */
+  hi2s2.Instance = SPI2;
+  hi2s2.Init.Mode = I2S_MODE_MASTER_TX;
+  hi2s2.Init.Standard = I2S_STANDARD_PHILIPS;
+  hi2s2.Init.DataFormat = I2S_DATAFORMAT_24B;
+  hi2s2.Init.MCLKOutput = I2S_MCLKOUTPUT_DISABLE;
+  hi2s2.Init.AudioFreq = I2S_AUDIOFREQ_48K;
+  hi2s2.Init.CPOL = I2S_CPOL_LOW;
+  hi2s2.Init.FirstBit = I2S_FIRSTBIT_MSB;
+  hi2s2.Init.WSInversion = I2S_WS_INVERSION_DISABLE;
+  hi2s2.Init.Data24BitAlignment = I2S_DATA_24BIT_ALIGNMENT_RIGHT;
+  hi2s2.Init.MasterKeepIOState = I2S_MASTER_KEEP_IO_STATE_DISABLE;
+  if (HAL_I2S_Init(&hi2s2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /* USER CODE BEGIN I2S2_Init 2 */
+
+  /* USER CODE END I2S2_Init 2 */
+
+}
+
+/**
   * @brief SPI3 Initialization Function
   * @param None
   * @retval None
@@ -242,7 +323,7 @@ static void MX_SPI3_Init(void)
   hspi3.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi3.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi3.Init.NSS = SPI_NSS_SOFT;
-  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_2;
+  hspi3.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi3.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi3.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi3.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
@@ -289,9 +370,11 @@ static void MX_GPIO_Init(void)
 
   /* GPIO Ports Clock Enable */
   __HAL_RCC_GPIOH_CLK_ENABLE();
+  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOA_CLK_ENABLE();
   __HAL_RCC_GPIOB_CLK_ENABLE();
   __HAL_RCC_GPIOF_CLK_ENABLE();
-  __HAL_RCC_GPIOC_CLK_ENABLE();
+  __HAL_RCC_GPIOG_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
   HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, GPIO_PIN_SET);
