@@ -149,6 +149,13 @@ HAL_HSEM_Release(HSEM_ID_0,0);
 
   while (1)
   {
+	  // i want 2 Volt on the output of DAC
+
+	  uint32_t DAC_value = 10168009;
+	  uint16_t my_data[2];
+	  my_data[0] = DAC_value & 0xFFFF;
+	  my_data[1] = DAC_value >> 16;
+	  HAL_I2S_Transmit(&hi2s2, my_data, 2, 100);
 
 //	  TXdata[0] = AD1939_GLOBAL_ADDRESS+AD1939_RW_BIT;
 //	  TXdata[1] = AD1939_REG_ADDRESS;
@@ -181,13 +188,13 @@ void SystemClock_Config(void)
 
   /** Supply configuration update enable
   */
-  HAL_PWREx_ConfigSupply(PWR_EXTERNAL_SOURCE_SUPPLY);
+  //HAL_PWREx_ConfigSupply(PWR_EXTERNAL_SOURCE_SUPPLY);
 
   /** Configure the main internal regulator output voltage
   */
-  __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
+  //__HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE3);
 
-  while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
+  //while(!__HAL_PWR_GET_FLAG(PWR_FLAG_VOSRDY)) {}
 
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
