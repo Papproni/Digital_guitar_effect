@@ -55,8 +55,7 @@
 /* USER CODE END 0 */
 
 /* External variables --------------------------------------------------------*/
-extern DMA_HandleTypeDef hdma_spi4_tx;
-extern SPI_HandleTypeDef hspi4;
+
 /* USER CODE BEGIN EV */
 
 /* USER CODE END EV */
@@ -198,34 +197,6 @@ void SysTick_Handler(void)
 /* For the available peripheral interrupt handler names,                      */
 /* please refer to the startup file (startup_stm32h7xx.s).                    */
 /******************************************************************************/
-
-/**
-  * @brief This function handles DMA2 stream2 global interrupt.
-  */
-void DMA2_Stream2_IRQHandler(void)
-{
-  /* USER CODE BEGIN DMA2_Stream2_IRQn 0 */
-
-  /* USER CODE END DMA2_Stream2_IRQn 0 */
-  HAL_DMA_IRQHandler(&hdma_spi4_tx);
-  /* USER CODE BEGIN DMA2_Stream2_IRQn 1 */
-
-  /* USER CODE END DMA2_Stream2_IRQn 1 */
-}
-
-/**
-  * @brief This function handles SPI4 global interrupt.
-  */
-void SPI4_IRQHandler(void)
-{
-  /* USER CODE BEGIN SPI4_IRQn 0 */
-
-  /* USER CODE END SPI4_IRQn 0 */
-  HAL_SPI_IRQHandler(&hspi4);
-  /* USER CODE BEGIN SPI4_IRQn 1 */
-
-  /* USER CODE END SPI4_IRQn 1 */
-}
 
 /* USER CODE BEGIN 1 */
 

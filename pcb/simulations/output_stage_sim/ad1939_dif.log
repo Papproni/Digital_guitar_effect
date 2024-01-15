@@ -1,4 +1,4 @@
-Circuit: * C:\Projects\git\onlab\Digital_guitar_effect\pcb\simulations\output_stage_sim\ad1939_dif.asc
+Circuit: * C:\Users\Aron\Documents\GitHub\Digital_guitar_effect\pcb\simulations\output_stage_sim\ad1939_dif.asc
 
 Direct Newton iteration failed to find .op point.  (Use ".option noopiter" to skip.)
 Starting Gmin stepping
@@ -21,8 +21,8 @@ Gmin = 0
 Gmin stepping succeeded in finding the operating point.
 
 
-Date: Thu Nov  2 14:21:23 2023
-Total elapsed time: 0.071 seconds.
+Date: Fri Jan 12 14:27:57 2024
+Total elapsed time: 0.069 seconds.
 
 tnom = 27
 temp = 27
@@ -35,7 +35,7 @@ rejected = 4
 matrix size = 19
 fillins = 4
 solver = Normal
-Avg thread counts: 2.0/3.0/3.0/2.0
-Matrix Compiler1:      64 opcodes  0.2/[0.1]/0.2
-Matrix Compiler2: 1.68 KB object code size  0.2/0.1/[0.1]
+Avg thread counts: 2.9/4.8/4.8/2.9
+Matrix Compiler1: 1.10 KB object code size  0.3/0.2/[0.2]
+Matrix Compiler2: 1.68 KB object code size  0.1/0.2/[0.1]
 

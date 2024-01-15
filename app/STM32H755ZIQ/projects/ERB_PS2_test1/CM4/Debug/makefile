@@ -1,6 +1,6 @@
 ################################################################################
 # Automatically-generated file. Do not edit!
-# Toolchain: GNU Tools for STM32 (10.3-2021.10)
+# Toolchain: GNU Tools for STM32 (11.3.rel1)
 ################################################################################
 
 -include ../makefile.init
@@ -9,7 +9,6 @@ RM := rm -rf
 
 # All of the sources participating in the build are defined here
 -include sources.mk
--include Drivers/STM32H7xx_HAL_Driver/subdir.mk
 -include Core/Startup/subdir.mk
 -include Core/Src/subdir.mk
 -include Common/Src/subdir.mk
@@ -61,8 +60,8 @@ all: main-build
 main-build: ERB_PS2_test1_CM4.elf secondary-outputs
 
 # Tool invocations
-ERB_PS2_test1_CM4.elf ERB_PS2_test1_CM4.map: $(OBJS) $(USER_OBJS) C:\ST\workspaces\stm32Audio\ERB_PS2_test1\CM4\STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-gcc -o "ERB_PS2_test1_CM4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\ST\workspaces\stm32Audio\ERB_PS2_test1\CM4\STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ERB_PS2_test1_CM4.map" -Wl,--gc-sections -static -L"C:\ST\workspaces\stm32Audio\ERB_PS2_test1\Drivers\CMSIS\Lib\GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+ERB_PS2_test1_CM4.elf ERB_PS2_test1_CM4.map: $(OBJS) $(USER_OBJS) C:\Users\Aron\Documents\GitHub\Digital_guitar_effect\app\STM32H755ZIQ\projects\ERB_PS2_test1\CM4\STM32H755ZITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-gcc -o "ERB_PS2_test1_CM4.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m4 -T"C:\Users\Aron\Documents\GitHub\Digital_guitar_effect\app\STM32H755ZIQ\projects\ERB_PS2_test1\CM4\STM32H755ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="ERB_PS2_test1_CM4.map" -Wl,--gc-sections -static -L"C:\Users\Aron\Documents\GitHub\Digital_guitar_effect\app\STM32H755ZIQ\projects\ERB_PS2_test1\Drivers\CMSIS\Lib\GCC" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 
