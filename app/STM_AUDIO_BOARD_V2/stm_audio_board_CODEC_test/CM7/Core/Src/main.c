@@ -72,7 +72,11 @@ static void MX_I2S1_Init(void);
 volatile uint16_t my_data[4];
 volatile uint16_t rx_data_i2s[4];
 
+void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
+	my_data[0]++;
+	// ADD SOUND FUNCTION HERE
 
+}
 
 /* USER CODE END 0 */
 
