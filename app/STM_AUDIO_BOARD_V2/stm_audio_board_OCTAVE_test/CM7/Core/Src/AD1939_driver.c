@@ -73,14 +73,14 @@ int ad1939_init(SPI_HandleTypeDef* hspi_codec) {
 
     HAL_Delay(100);
 
-    while(ad1939_pll_locked()){
+    if(ad1939_pll_locked()){
     	// wait till pll is locked takes about 10 ms acc to datasheet
     }
     // DAC settings
     if (ad1939_write_reg(AD1939_DAC_Control_0, 0x00)) return -1;
     if (ad1939_write_reg(AD1939_DAC_Control_1, 0b00000000)) return -1; // Slave setup
     //if (ad1939_write_reg(AD1939_DAC_Control_1, 0b01110000)) return -1; // MASTER setup
-    if (ad1939_write_reg(AD1939_DAC_Control_2, 0b00000110)) return -1;
+    if (ad1939_write_reg(AD1939_DAC_Control_2, 0b00000000)) return -1;
 
     // DAC MUTE SETTINGS
     // OL2N and OL2P 0011 1011
@@ -91,7 +91,7 @@ int ad1939_init(SPI_HandleTypeDef* hspi_codec) {
     if (ad1939_write_reg(AD1939_DAC_Vol_R2, 0x00)) return -1; // no attenuation
 
     // ADC settings
-    if (ad1939_write_reg(AD1939_ADC_Control_0, 0b000001000)) return -1;
+    if (ad1939_write_reg(AD1939_ADC_Control_0, 0b00000000)) return -1;
     if (ad1939_write_reg(AD1939_ADC_Control_1, 0x00 )) return -1;
     if (ad1939_write_reg(AD1939_ADC_Control_2, 0x00 )) return -1;
 

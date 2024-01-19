@@ -24,6 +24,8 @@
 #include "stm32h7xx_hal_crc.h"
 #include "stm32h7xx.h"
 #include "arm_math.h"
+
+#include "AD1939_driver.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -71,15 +73,175 @@ static void MX_I2S1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-volatile uint16_t my_data[4];
-volatile uint16_t rx_data_i2s[4];
+volatile uint16_t my_data[8];
+volatile uint16_t rx_data_i2s[8];
 
-void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
-	my_data[0]++;
-	// ADD SOUND FUNCTION HERE
 
+// DESIGN FILTERS
+
+#define numberofsubbands 43
+
+// SUBBAND FILTER VECTORS
+volatile float32_t subbandfilter_input[numberofsubbands];
+volatile float32_t subbandfilter_output[numberofsubbands];
+
+// saved states
+volatile float32_t subbandfilter_dn[numberofsubbands];
+volatile float32_t subbandfilter_dn1[numberofsubbands];
+volatile float32_t subbandfilter_dn2[numberofsubbands];
+
+// filter coefficients fs=48000khz
+float32_t subbandfilter_a1[numberofsubbands]={
+  -1.99945743773269,-1.99935942906841,-1.99924062977670,-1.99909708277235,-1.99892410985062,-1.99871618287911,-1.99846677223317,-1.99816816848975,-1.99781127270592,-1.99738534980214,-1.99687773863020,-1.99627351120883,-1.99555507233332,-1.99470168928216,-1.99368893962368,-1.99248806313769,-1.99106520157565,-1.98938050735340,-1.98738709926732,-1.98502983991592,-1.98224390566903,-1.97895311574385,-1.97506798222950,-1.97048343779300,-1.96507619239353,-1.95870166479969,-1.95119042932896,-1.94234411345253,-1.93193067840176,-1.91967901366415,-1.90527277869813,-1.88834343336828,-1.86846241538006,-1.84513245237305,-1.81777804381746,-1.78573522094381,-1.74824080170997,-1.70442151569457,-1.65328359840612,-1.59370376851867,-1.52442293367053,-1.44404455593239,-1.35104038852965
+};
+float32_t subbandfilter_a2[numberofsubbands]={
+  0.999623840823723,0.999592083812410,0.999557647639999,0.999520306796363,0.999479816929101,0.999435913307174,0.999388309169729,0.999336693954506,0.999280731400842,0.999220057523294,0.999154278453365,0.999082968148916,0.999005665973701,0.998921874153418,0.998831055119909,0.998732628762124,0.998625969611674,0.998510404002805,0.998385207262283,0.998249601004902,0.998102750636437,0.997943763199395,0.997771685739803,0.997585504428058,0.997384144736516,0.997166473064829,0.996931300315725,0.996677388064530,0.996403458142182,0.996108206671829,0.995790323872893,0.995448521284569,0.995081568475183,0.994688341807231,0.994267888432584,0.993819509407934,0.993342866651437,0.992838119401008,0.992306096857390,0.991748514743871,0.991168244482538,0.990569644389679,0.989958962429589
+};
+
+float32_t subbandfilter_b0[numberofsubbands]={
+  0.000188079588138645,0.000203958093794915,0.000221176180000397,0.000239846601818621,0.000260091535449550,0.000282043346413158,0.000305845415135634,0.000331653022746955,0.000359634299578796,0.000389971238353096,0.000422860773317513,0.000458515925542157,0.000497167013149809,0.000539062923291039,0.000584472440045357,0.000633685618937812,0.000687015194163202,0.000744797998597725,0.000807396368858447,0.000875199497549016,0.000948624681781347,0.00102811840030234,0.00111415713009846,0.00120724778597086,0.00130792763174217,0.00141676346758574,0.00153434984213762,0.00166130596773492,0.00179827092890887,0.00194589666408543,0.00210483806355368,0.00227573935771526,0.00245921576240832,0.00265582909638453,0.00286605578370814,0.00309024529603291,0.00332856667428175,0.00358094029949610,0.00384695157130517,0.00412574262806443,0.00441587775873096,0.00471517780516052,0.00502051878520553};
+float32_t subbandfilter_b1[numberofsubbands]={0.0};
+float32_t subbandfilter_b2[numberofsubbands]={
+  -0.000188079588138645,-0.000203958093794915,-0.000221176180000397,-0.000239846601818621,-0.000260091535449550,-0.000282043346413158,-0.000305845415135634,-0.000331653022746955,-0.000359634299578796,-0.000389971238353096,-0.000422860773317513,-0.000458515925542157,-0.000497167013149809,-0.000539062923291039,-0.000584472440045357,-0.000633685618937812,-0.000687015194163202,-0.000744797998597725,-0.000807396368858447,-0.000875199497549016,-0.000948624681781347,-0.00102811840030234,-0.00111415713009846,-0.00120724778597086,-0.00130792763174217,-0.00141676346758574,-0.00153434984213762,-0.00166130596773492,-0.00179827092890887,-0.00194589666408543,-0.00210483806355368,-0.00227573935771526,-0.00245921576240832,-0.00265582909638453,-0.00286605578370814,-0.00309024529603291,-0.00332856667428175,-0.00358094029949610,-0.00384695157130517,-0.00412574262806443,-0.00441587775873096,-0.00471517780516052,-0.00502051878520553
+};
+
+
+volatile float32_t subbandfilter_A1[numberofsubbands];
+volatile float32_t subbandfilter_A2[numberofsubbands];
+
+volatile float32_t subbandfilter_B0[numberofsubbands];
+volatile float32_t subbandfilter_B1[numberofsubbands];
+volatile float32_t subbandfilter_B2[numberofsubbands];
+
+// SUBBAND FILTER FUNCTION - DIRECT FORM 2 - normalfunction exectime: ~6us
+void subbandfilter_calculation(int32_t input){
+  float32_t input_f32=(float32_t)input;
+  // set d[n], d[n-1], d[n-2]
+  for(int i=0;i<numberofsubbands;i++){
+			  subbandfilter_input[i]=input_f32;
+			  subbandfilter_dn2[i]=subbandfilter_dn1[i];
+			  subbandfilter_dn1[i]=subbandfilter_dn[i];
+  }
+  // A1
+  arm_mult_f32(subbandfilter_a1, subbandfilter_dn1, subbandfilter_A1, numberofsubbands);
+  // A2
+  arm_mult_f32(subbandfilter_a2, subbandfilter_dn2, subbandfilter_A2, numberofsubbands);
+
+  // A1+A2
+  arm_add_f32(subbandfilter_A1, subbandfilter_A2, subbandfilter_dn, numberofsubbands);
+
+  // d[n]=A0-A1-A2
+  arm_sub_f32(subbandfilter_input,subbandfilter_dn, subbandfilter_dn, numberofsubbands);
+
+  // y_n=b0*d[n]+b1*d[n-1]+b2*d[n-2]
+
+  // B1
+  arm_mult_f32(subbandfilter_b1, subbandfilter_dn1, subbandfilter_B1, numberofsubbands);
+  // B2
+  arm_mult_f32(subbandfilter_b2, subbandfilter_dn2, subbandfilter_B2, numberofsubbands);
+  // B1+B2
+  arm_add_f32(subbandfilter_B1, subbandfilter_B2, subbandfilter_output, numberofsubbands);
+
+  // B0
+  arm_mult_f32(subbandfilter_b0, subbandfilter_dn, subbandfilter_B0, numberofsubbands);
+
+  // y=B0+B1+B2
+  arm_add_f32(subbandfilter_output, subbandfilter_B0, subbandfilter_output, numberofsubbands);
 }
 
+// usefull filters
+volatile float32_t subband_ones[numberofsubbands]={1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0,1.0};
+volatile float32_t subband_absolute_value[numberofsubbands];
+volatile float32_t octave1_up=0.0;
+volatile float32_t octave1_up_filtered=0.0;
+// octave Filter
+arm_biquad_cascade_df2T_instance_f32 highpass_iir_50hz;
+volatile float32_t highpass_coeff[5]={0.99538200, -1.99076399, 0.99538200, 1.99074267, -0.99078531};
+volatile float32_t highpass_state[10];
+
+
+void octave1up(){
+	// get absolute values of subbands
+	arm_abs_f32(subbandfilter_output, subband_absolute_value, numberofsubbands);
+
+
+	// add the octave subbands together
+	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up);
+
+	// filter the DC component out
+	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz, &octave1_up, &octave1_up_filtered, 1);
+}
+
+typedef union
+{
+	struct{
+		int16_t raw_low;
+		int16_t raw_high;
+	};
+	int32_t value;
+}adc_data_bitfield;
+
+volatile int32_t output_test_ac;
+volatile adc_data_bitfield adc_data_bf;
+volatile adc_data_bitfield output_buffer;
+volatile uint8_t ADC_READY_FLAG = 0;
+void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
+//	ADC_READY_FLAG = 1;
+//	//	adc_data_bitfield adc_data_bf;
+	adc_data_bf.raw_low 	= rx_data_i2s[4];
+	adc_data_bf.raw_high 	= rx_data_i2s[5];
+
+//	// get data from ADC
+//	int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
+//
+//	// ADD SOUND FUNCTION HERE
+//	subbandfilter_calculation(value_from_ADC);
+//	octave1up();
+//
+//	// Write to DAC
+//	static float32_t loopback_volume = 1;
+//	static float32_t octave_volume = 0;
+//	output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
+//
+//
+//	output_buffer.value= output_test_ac;
+}
+
+void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
+	ADC_READY_FLAG = 1;
+	//	adc_data_bitfield adc_data_bf;
+	adc_data_bf.raw_low 	= rx_data_i2s[0];
+	adc_data_bf.raw_high 	= rx_data_i2s[1];
+
+//	// get data from ADC
+//	int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
+//
+////	// ADD SOUND FUNCTION HERE
+//	subbandfilter_calculation(value_from_ADC);
+//	octave1up();
+//
+//	// Write to DAC
+//	static float32_t loopback_volume = 0.7;
+//	static float32_t octave_volume = 3;
+//	output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
+//
+//
+//	output_buffer.value = output_test_ac;
+}
+
+void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
+	int32_t out2 = output_buffer.raw_low;
+	int32_t out3 = output_buffer.raw_high;
+	my_data[2] = out2;
+	my_data[3] = out3;
+}
+void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s){
+	int32_t out2 = output_buffer.raw_low;
+	int32_t out3 = output_buffer.raw_high;
+
+	my_data[6] = out2;
+	my_data[7] = out3;
+}
 /* USER CODE END 0 */
 
 /**
@@ -164,21 +326,13 @@ HSEM notification */
 //	uint8_t TXdata[3];
 //	uint8_t RXdata[3];
 
-  for(int i=0; i<8; i++){
+  for(int i=0; i<4; i++){
 	  my_data[i] = 0x0000;
+	  rx_data_i2s[i]= 0x0000;
   }
 
-  my_data[1] = 0x0000;
-  my_data[0] = 0x0000;
 
-  my_data[3] = 0x0000;
-  my_data[2] = 0x0000;
 
-  float32_t subbandfilter_a1[3];
-  float32_t subbandfilter_dn1[3];
-  float32_t subbandfilter_A1[3];
-  uint32_t numberofsubbands = 3;
-  arm_abs_f32(subbandfilter_A1, subbandfilter_dn1, numberofsubbands);
 
 
   //HAL_I2S_Transmit_DMA(&hi2s2, my_data, 4);
@@ -188,12 +342,16 @@ HSEM notification */
 
 
 //  HAL_I2S_Transmit_DMA(&hi2s2, my_data, 4);
+  // init specaial DSP instance
+  arm_biquad_cascade_df2T_init_f32(&highpass_iir_50hz, 1, &highpass_coeff, &highpass_state);
 
-
-  HAL_I2S_Transmit_DMA(&hi2s2, my_data, 4);
-  HAL_I2S_Receive_DMA(&hi2s1, rx_data_i2s, 4);
+  // init AD and DA
+  HAL_I2S_Transmit_DMA(	&hi2s2, 	my_data, 		4);
+  HAL_I2S_Receive_DMA(	&hi2s1, 	rx_data_i2s, 	4);
   ad1939_init(&hspi3);
 
+
+//  HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4);
 //  HAL_I2S_Transmit_DMA(&hi2s2, my_data, 120);
   //HAL_I2S_Receive_DMA(&hi2s1, rx_data_i2s, 4);
 
@@ -205,21 +363,42 @@ HSEM notification */
   uint32_t ch1 = 1;
   uint16_t test_val  = 25000;
 
-  HAL_Delay(10);
-  uint32_t timeVariable = HAL_GetTick();
+  //HAL_Delay(10);
+  //uint32_t timeVariable = HAL_GetTick();
 
   uint8_t channel = 0;
 
 
   while (1)
   {
-	  static HAL_StatusTypeDef err;
+	  if (ADC_READY_FLAG){
+		  ADC_READY_FLAG  = 0;
+		  // get data from ADC
+		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
+
+		// ADD SOUND FUNCTION HERE
+		subbandfilter_calculation(value_from_ADC);
+		octave1up();
+
+		// Write to DAC
+		static float32_t loopback_volume = 0.7;
+		static float32_t octave_volume = 2;
+		output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
+
+
+		output_buffer.value= output_test_ac;
+	  }
+
+
+	  //static HAL_StatusTypeDef err;
 	  //err = HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4,1000);
-	  uint32_t myvar = rx_data_i2s[1]<<8 | (uint32_t)rx_data_i2s[0]<<8;
-	  my_data[0] = rx_data_i2s[0]<<8;
-	  my_data[1] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
-	  my_data[2] = rx_data_i2s[0]<<8;
-	  my_data[3] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
+//	  uint32_t myvar = rx_data_i2s[1]<<8 | (uint32_t)rx_data_i2s[0]<<8;
+//	  HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4,1000);
+//	  my_data[0] = rx_data_i2s[0]<<8;
+//	  my_data[1] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
+//	  my_data[2] = rx_data_i2s[0]<<8;
+//	  my_data[3] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
+//	  HAL_I2S_Transmit(&hi2s2, my_data, 4,1000);
 	  //err = HAL_I2S_Transmit(&hi2s2, my_data, 4,1000);
 	  //HAL_I2S_Receive(&hi2s1, rx_data_i2s, 2, 100);
 //	  my_data[1] = test_val;
@@ -241,24 +420,24 @@ HSEM notification */
 //	  my_data[3] = rx_data_i2s[channel+1];
 
 
-	  if(( (timeVariable&0x0000FFFF) + 1 )< HAL_GetTick()){
-		  n++;
-		  //my_data[0] = amp*n;
-
-		  static state = 0;
-		   //= amp*n;
-
-//		  if (my_data[2]  >= 0x7FFF){
-//			  my_data[2] = my_data[2];
-//		  }
-		  //my_data[2] = amp*n;
-		  //my_data[3]++; //= amp*n;
-		  timeVariable = HAL_GetTick();
-	  }
-
-	  if(n>10){
-		  n=0;
-	  }
+//	  if(( (timeVariable&0x0000FFFF) + 1 )< HAL_GetTick()){
+//		  n++;
+//		  //my_data[0] = amp*n;
+//
+//		  static state = 0;
+//		   //= amp*n;
+//
+////		  if (my_data[2]  >= 0x7FFF){
+////			  my_data[2] = my_data[2];
+////		  }
+//		  //my_data[2] = amp*n;
+//		  //my_data[3]++; //= amp*n;
+//		  timeVariable = HAL_GetTick();
+//	  }
+//
+//	  if(n>10){
+//		  n=0;
+//	  }
 
 
 
@@ -316,12 +495,12 @@ void SystemClock_Config(void)
   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
-  RCC_OscInitStruct.PLL.PLLM = 2;
-  RCC_OscInitStruct.PLL.PLLN = 56;
+  RCC_OscInitStruct.PLL.PLLM = 5;
+  RCC_OscInitStruct.PLL.PLLN = 192;
   RCC_OscInitStruct.PLL.PLLP = 2;
-  RCC_OscInitStruct.PLL.PLLQ = 4;
+  RCC_OscInitStruct.PLL.PLLQ = 5;
   RCC_OscInitStruct.PLL.PLLR = 2;
-  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_3;
+  RCC_OscInitStruct.PLL.PLLRGE = RCC_PLL1VCIRANGE_2;
   RCC_OscInitStruct.PLL.PLLVCOSEL = RCC_PLL1VCOWIDE;
   RCC_OscInitStruct.PLL.PLLFRACN = 0;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
@@ -342,7 +521,7 @@ void SystemClock_Config(void)
   RCC_ClkInitStruct.APB2CLKDivider = RCC_APB2_DIV2;
   RCC_ClkInitStruct.APB4CLKDivider = RCC_APB4_DIV2;
 
-  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_4) != HAL_OK)
   {
     Error_Handler();
   }
@@ -372,7 +551,7 @@ static void MX_I2S1_Init(void)
   hi2s1.Init.CPOL = I2S_CPOL_LOW;
   hi2s1.Init.FirstBit = I2S_FIRSTBIT_MSB;
   hi2s1.Init.WSInversion = I2S_WS_INVERSION_DISABLE;
-  hi2s1.Init.Data24BitAlignment = I2S_DATA_24BIT_ALIGNMENT_RIGHT;
+  hi2s1.Init.Data24BitAlignment = I2S_DATA_24BIT_ALIGNMENT_LEFT;
   hi2s1.Init.MasterKeepIOState = I2S_MASTER_KEEP_IO_STATE_DISABLE;
   if (HAL_I2S_Init(&hi2s1) != HAL_OK)
   {
@@ -479,12 +658,12 @@ static void MX_DMA_Init(void)
   __HAL_RCC_DMA1_CLK_ENABLE();
 
   /* DMA interrupt init */
-  /* DMA1_Stream3_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA1_Stream3_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA1_Stream3_IRQn);
-  /* DMA2_Stream5_IRQn interrupt configuration */
-  HAL_NVIC_SetPriority(DMA2_Stream5_IRQn, 0, 0);
-  HAL_NVIC_EnableIRQ(DMA2_Stream5_IRQn);
+  /* DMA1_Stream0_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA1_Stream0_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA1_Stream0_IRQn);
+  /* DMA2_Stream1_IRQn interrupt configuration */
+  HAL_NVIC_SetPriority(DMA2_Stream1_IRQn, 0, 0);
+  HAL_NVIC_EnableIRQ(DMA2_Stream1_IRQn);
 
 }
 
