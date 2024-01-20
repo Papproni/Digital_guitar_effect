@@ -107,6 +107,9 @@ function [b,a]=calculate_biquad_of_subband(fc,q,fs)
     a2=(K.*K.*q-K+q)./(K.*K.*q+K+q);
     b=[b0' b1' b2']./norm_gain';
     a=[a0' a1' a2']./norm_gain';
+    x=a(:,1);
+    b=b./x;
+    a=a./x;
 end
 
 %% calculate which subband filter should i use for which subband

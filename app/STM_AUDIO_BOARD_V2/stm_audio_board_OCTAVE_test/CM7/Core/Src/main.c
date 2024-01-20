@@ -403,47 +403,17 @@ volatile adc_data_bitfield adc_data_bf;
 volatile adc_data_bitfield output_buffer;
 volatile uint8_t ADC_READY_FLAG = 0;
 void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
-//	ADC_READY_FLAG = 1;
+	ADC_READY_FLAG = 1;
 //	//	adc_data_bitfield adc_data_bf;
-	adc_data_bf.raw_low 	= rx_data_i2s[4];
-	adc_data_bf.raw_high 	= rx_data_i2s[5];
-
-//	// get data from ADC
-//	int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
-//
-//	// ADD SOUND FUNCTION HERE
-//	subbandfilter_calculation(value_from_ADC);
-//	octave1up();
-//
-//	// Write to DAC
-//	static float32_t loopback_volume = 1;
-//	static float32_t octave_volume = 0;
-//	output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
-//
-//
-//	output_buffer.value= output_test_ac;
+	adc_data_bf.raw_low 	= rx_data_i2s[0];
+	adc_data_bf.raw_high 	= rx_data_i2s[1];
 }
 
 void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
 	ADC_READY_FLAG = 1;
 	//	adc_data_bitfield adc_data_bf;
-	adc_data_bf.raw_low 	= rx_data_i2s[0];
-	adc_data_bf.raw_high 	= rx_data_i2s[1];
-
-//	// get data from ADC
-//	int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
-//
-////	// ADD SOUND FUNCTION HERE
-//	subbandfilter_calculation(value_from_ADC);
-//	octave1up();
-//
-//	// Write to DAC
-//	static float32_t loopback_volume = 0.7;
-//	static float32_t octave_volume = 3;
-//	output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
-//
-//
-//	output_buffer.value = output_test_ac;
+	adc_data_bf.raw_low 	= rx_data_i2s[4];
+	adc_data_bf.raw_high 	= rx_data_i2s[5];
 }
 
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
@@ -602,15 +572,15 @@ HSEM notification */
 		float32_t octave_1_up_f32 = octave1_up_filtered;
 
 		// +2 octave
-		subbandfilter_calculation((int32_t)octave_1_up_f32*5);
-		octave1up();
+//		subbandfilter_calculation((int32_t)octave_1_up_f32*5);
+//		octave1up();
 		// save result
 		float32_t octave_2_up_f32 = octave1_up_filtered;
 
 		// Write to DAC
-		volatile static float32_t passthrough_volume = 0;
-		volatile static float32_t octave_1_volume = 0;
-		volatile static float32_t octave_2_volume = 2;
+		volatile static float32_t passthrough_volume = 1;
+		volatile static float32_t octave_1_volume = 2;
+		volatile static float32_t octave_2_volume = 0;
 		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
 						(int32_t)octave_2_up_f32*octave_2_volume +
 						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
