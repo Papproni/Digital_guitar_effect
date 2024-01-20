@@ -376,14 +376,26 @@ HSEM notification */
 		  // get data from ADC
 		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
 
-		// ADD SOUND FUNCTION HERE
+		// +1 octave
 		subbandfilter_calculation(value_from_ADC);
 		octave1up();
+		// save result
+		float32_t octave_1_up_f32 = octave1_up_filtered;
+
+		// +2 octave
+		subbandfilter_calculation((int32_t)octave_1_up_f32*5);
+		octave1up();
+		// save result
+		float32_t octave_2_up_f32 = octave1_up_filtered;
 
 		// Write to DAC
-		static float32_t loopback_volume = 0.7;
-		static float32_t octave_volume = 2;
-		output_test_ac=(int32_t)octave1_up_filtered*octave_volume + (int32_t)((float32_t)value_from_ADC*loopback_volume);
+		volatile static float32_t passthrough_volume = 0;
+		volatile static float32_t octave_1_volume = 0;
+		volatile static float32_t octave_2_volume = 2;
+		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
+						(int32_t)octave_2_up_f32*octave_2_volume +
+						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
+
 
 
 		output_buffer.value= output_test_ac;
