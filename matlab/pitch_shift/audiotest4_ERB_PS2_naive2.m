@@ -11,11 +11,11 @@ close all;
 
 bar=waitbar(0,'Loading input data');
 %% FILTERBANK PARAMS
-numberofSubbands=43; % number of subbands
+numberofSubbands=55; % number of subbands
 k=1:numberofSubbands;
 k=k;
 fs=44100; % sampleRate
-[input,fs] = audioread("guitar_ONE_chords.wav");
+[input,fs] = audioread("../all_of_it/guitar_ONE_chords.wav");
 
 input=input';
 fmin=20; %minimum frequency
