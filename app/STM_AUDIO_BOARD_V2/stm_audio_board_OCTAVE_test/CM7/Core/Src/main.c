@@ -73,10 +73,10 @@ static void MX_I2S1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-volatile uint16_t my_data[8];
-volatile uint16_t rx_data_i2s[8];
+volatile uint16_t my_data[8];// __ALIGNED(32) __attribute__((at(0x24000000)));
+volatile uint16_t rx_data_i2s[8];// __ALIGNED(32) __attribute__((at(0x24000000)));
 
-
+//uint8_t uartRxBuf[UART_RX_STR_SIZE] __ALIGNED(32) __attribute__((section('.ram1')));
 // DESIGN FILTERS
 
 #define numberofsubbands 55
@@ -461,7 +461,10 @@ volatile int32_t output_test_ac;
 volatile adc_data_bitfield adc_data_bf;
 volatile adc_data_bitfield output_buffer;
 volatile uint8_t ADC_READY_FLAG = 0;
+volatile uint8_t DAC_HALF_COMPLETE_FLAG = 0;
 void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
+//	SCB_InvalidateDCache();
+	SCB_InvalidateDCache_by_Addr(rx_data_i2s, sizeof(rx_data_i2s));
 	ADC_READY_FLAG = 1;
 //	//	adc_data_bitfield adc_data_bf;
 	adc_data_bf.raw_low 	= rx_data_i2s[0];
@@ -469,6 +472,8 @@ void HAL_I2S_RxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
 }
 
 void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
+	SCB_InvalidateDCache_by_Addr(rx_data_i2s, sizeof(rx_data_i2s));
+//	SCB_InvalidateDCache();
 	ADC_READY_FLAG = 1;
 	//	adc_data_bitfield adc_data_bf;
 	adc_data_bf.raw_low 	= rx_data_i2s[4];
@@ -476,17 +481,20 @@ void HAL_I2S_RxCpltCallback(I2S_HandleTypeDef *hi2s){
 }
 
 void HAL_I2S_TxHalfCpltCallback(I2S_HandleTypeDef *hi2s){
-	int32_t out2 = output_buffer.raw_low;
-	int32_t out3 = output_buffer.raw_high;
-	my_data[2] = out2;
-	my_data[3] = out3;
+	DAC_HALF_COMPLETE_FLAG = 1;
+//	int32_t out2 = output_buffer.raw_low;
+//	int32_t out3 = output_buffer.raw_high;
+	SCB_CleanDCache_by_Addr(my_data, sizeof(my_data));
+//	my_data[2] = out2;
+//	my_data[3] = out3;
 }
 void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s){
-	int32_t out2 = output_buffer.raw_low;
-	int32_t out3 = output_buffer.raw_high;
-
-	my_data[6] = out2;
-	my_data[7] = out3;
+	DAC_HALF_COMPLETE_FLAG = 0;
+//	int32_t out2 = output_buffer.raw_low;
+//	int32_t out3 = output_buffer.raw_high;
+	SCB_CleanDCache_by_Addr(my_data, sizeof(my_data));
+//	my_data[6] = out2;
+//	my_data[7] = out3;
 }
 /* USER CODE END 0 */
 
@@ -505,6 +513,9 @@ int main(void)
 
   /* Enable I-Cache---------------------------------------------------------*/
   SCB_EnableICache();
+
+  /* Enable D-Cache---------------------------------------------------------*/
+  SCB_EnableDCache();
 
 /* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /* Wait until CPU2 boots and enters in stop mode or timeout*/
@@ -650,75 +661,18 @@ HSEM notification */
 
 
 		output_buffer.value= output_test_ac;
+		if ( DAC_HALF_COMPLETE_FLAG) {
+			my_data[2] = output_buffer.raw_low;
+			my_data[3] = output_buffer.raw_high;
+		}
+		else{
+			my_data[6] = output_buffer.raw_low;
+			my_data[7] = output_buffer.raw_high;
+		}
+
+
+//		SCB_InvalidateDCache();
 	  }
-
-
-	  //static HAL_StatusTypeDef err;
-	  //err = HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4,1000);
-//	  uint32_t myvar = rx_data_i2s[1]<<8 | (uint32_t)rx_data_i2s[0]<<8;
-//	  HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4,1000);
-//	  my_data[0] = rx_data_i2s[0]<<8;
-//	  my_data[1] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
-//	  my_data[2] = rx_data_i2s[0]<<8;
-//	  my_data[3] = (rx_data_i2s[1]<<8) | (rx_data_i2s[0]>>8);
-//	  HAL_I2S_Transmit(&hi2s2, my_data, 4,1000);
-	  //err = HAL_I2S_Transmit(&hi2s2, my_data, 4,1000);
-	  //HAL_I2S_Receive(&hi2s1, rx_data_i2s, 2, 100);
-//	  my_data[1] = test_val;
-
-
-
-	  /*
-	   * #define ADC_WS_PIN_Pin GPIO_PIN_4
-#define ADC_WS_PIN_GPIO_Port GPIOA
-#define ADC_CLK_PIN_Pin GPIO_PIN_5
-#define ADC_CLK_PIN_GPIO_Port GPIOA
-#define CODEC_CS_Pin GPIO_PIN_13
-#define CODEC_CS_GPIO_Port GPIOF
-#define ADC_DATA_PIN_Pin GPIO_PIN_9
-#define ADC_DATA_PIN_GPIO_Port GPIOG
-	   */
-
-//	  my_data[2] = rx_data_i2s[channel];
-//	  my_data[3] = rx_data_i2s[channel+1];
-
-
-//	  if(( (timeVariable&0x0000FFFF) + 1 )< HAL_GetTick()){
-//		  n++;
-//		  //my_data[0] = amp*n;
-//
-//		  static state = 0;
-//		   //= amp*n;
-//
-////		  if (my_data[2]  >= 0x7FFF){
-////			  my_data[2] = my_data[2];
-////		  }
-//		  //my_data[2] = amp*n;
-//		  //my_data[3]++; //= amp*n;
-//		  timeVariable = HAL_GetTick();
-//	  }
-//
-//	  if(n>10){
-//		  n=0;
-//	  }
-
-
-
-
-	  // i want 2 Volt on the output of DAC
-	  //HAL_Delay(1);
-//	  TXdata[0] = AD1939_GLOBAL_ADDRESS+AD1939_RW_BIT;
-//	  TXdata[1] = AD1939_REG_ADDRESS;
-//	  TXdata[2] = AD1939_DATA;
-//	 // CS LOW
-//	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 0);
-//	 // SPI SEND CMD
-//	 HAL_SPI_TransmitReceive(&hspi3, TXdata, RXdata, 3, 1000);
-//	 // CS HIGH
-//	 HAL_GPIO_WritePin(CODEC_CS_GPIO_Port, CODEC_CS_Pin, 1);
-
-
-
 
     /* USER CODE END WHILE */
 

@@ -2,7 +2,7 @@
 CAD.formats=
 CAD.pinconfig=
 CAD.provider=
-CORTEX_M7.CPU_DCache=Disabled
+CORTEX_M7.CPU_DCache=Enabled
 CORTEX_M7.CPU_ICache=Enabled
 CORTEX_M7.Enable_S-Cortex_Memory_Protection_Unit_Region1_Settings_S=MPU_REGION_ENABLE
 CORTEX_M7.Enable_S-Cortex_Memory_Protection_Unit_Region2_Settings_S=MPU_REGION_ENABLE

@@ -1,10 +1,10 @@
 ../Core/Src/main.c:348:6:subbandfilter_calculation	3
 ../Core/Src/main.c:389:6:subbandfilter_octave2_calculation	3
 ../Core/Src/main.c:439:6:octave1up	1
-../Core/Src/main.c:464:6:HAL_I2S_RxHalfCpltCallback	1
-../Core/Src/main.c:471:6:HAL_I2S_RxCpltCallback	1
-../Core/Src/main.c:478:6:HAL_I2S_TxHalfCpltCallback	1
-../Core/Src/main.c:484:6:HAL_I2S_TxCpltCallback	1
-../Core/Src/main.c:734:6:SystemClock_Config	5
-../Core/Src/main.c:497:5:main	8
-../Core/Src/main.c:974:6:Error_Handler	1
+../Core/Src/main.c:465:6:HAL_I2S_RxHalfCpltCallback	2
+../Core/Src/main.c:474:6:HAL_I2S_RxCpltCallback	2
+../Core/Src/main.c:483:6:HAL_I2S_TxHalfCpltCallback	2
+../Core/Src/main.c:491:6:HAL_I2S_TxCpltCallback	2
+../Core/Src/main.c:688:6:SystemClock_Config	5
+../Core/Src/main.c:505:5:main	12
+../Core/Src/main.c:928:6:Error_Handler	1
