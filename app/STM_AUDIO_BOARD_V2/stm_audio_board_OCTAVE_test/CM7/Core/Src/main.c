@@ -90,6 +90,9 @@ volatile float32_t subbandfilter_dn[numberofsubbands];
 volatile float32_t subbandfilter_dn1[numberofsubbands];
 volatile float32_t subbandfilter_dn2[numberofsubbands];
 
+volatile float32_t subbandfilter_octave2_dn[numberofsubbands];
+volatile float32_t subbandfilter_octave2_dn1[numberofsubbands];
+volatile float32_t subbandfilter_octave2_dn2[numberofsubbands];
 // FILTER values are from audiotest4_ERB_PS2_naive2 matlab script
 // filter coefficients fs=48000khz
 float32_t subbandfilter_a1[numberofsubbands]={
@@ -366,6 +369,41 @@ void subbandfilter_calculation(int32_t input){
   arm_add_f32(subbandfilter_output, subbandfilter_B0, subbandfilter_output, numberofsubbands);
 }
 
+void subbandfilter_octave2_calculation(int32_t input){
+  float32_t input_f32=(float32_t)input;
+  // set d[n], d[n-1], d[n-2]
+  for(int i=0;i<numberofsubbands;i++){
+	  	  	  subbandfilter_input[i]=input_f32;
+			  subbandfilter_octave2_dn2[i]=subbandfilter_octave2_dn1[i];
+			  subbandfilter_octave2_dn1[i]=subbandfilter_octave2_dn[i];
+  }
+  // A1
+  arm_mult_f32(subbandfilter_a1, subbandfilter_octave2_dn1, subbandfilter_A1, numberofsubbands);
+  // A2
+  arm_mult_f32(subbandfilter_a2, subbandfilter_octave2_dn2, subbandfilter_A2, numberofsubbands);
+
+  // A1+A2
+  arm_add_f32(subbandfilter_A1, subbandfilter_A2, subbandfilter_octave2_dn, numberofsubbands);
+
+  // d[n]=A0-A1-A2
+  arm_sub_f32(subbandfilter_input,subbandfilter_octave2_dn, subbandfilter_octave2_dn, numberofsubbands);
+
+  // y_n=b0*d[n]+b1*d[n-1]+b2*d[n-2]
+
+  // B1
+  arm_mult_f32(subbandfilter_b1, subbandfilter_octave2_dn1, subbandfilter_B1, numberofsubbands);
+  // B2
+  arm_mult_f32(subbandfilter_b2, subbandfilter_octave2_dn2, subbandfilter_B2, numberofsubbands);
+  // B1+B2
+  arm_add_f32(subbandfilter_B1, subbandfilter_B2, subbandfilter_output, numberofsubbands);
+
+  // B0
+  arm_mult_f32(subbandfilter_b0, subbandfilter_octave2_dn, subbandfilter_B0, numberofsubbands);
+
+  // y=B0+B1+B2
+  arm_add_f32(subbandfilter_output, subbandfilter_B0, subbandfilter_output, numberofsubbands);
+}
+
 // usefull filters
 volatile float32_t subband_ones[numberofsubbands];
 volatile float32_t subband_absolute_value[numberofsubbands];
@@ -443,6 +481,9 @@ int main(void)
 /* USER CODE BEGIN Boot_Mode_Sequence_0 */
   int32_t timeout;
 /* USER CODE END Boot_Mode_Sequence_0 */
+
+  /* Enable I-Cache---------------------------------------------------------*/
+  SCB_EnableICache();
 
 /* USER CODE BEGIN Boot_Mode_Sequence_1 */
   /* Wait until CPU2 boots and enters in stop mode or timeout*/
@@ -566,21 +607,21 @@ HSEM notification */
 		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
 
 		// +1 octave
-		subbandfilter_calculation(value_from_ADC);
+		subbandfilter_calculation(value_from_ADC/4);
 		octave1up();
 		// save result
 		float32_t octave_1_up_f32 = octave1_up_filtered;
 
 		// +2 octave
-//		subbandfilter_calculation((int32_t)octave_1_up_f32*5);
-//		octave1up();
+		subbandfilter_octave2_calculation((int32_t)(octave_1_up_f32*4));
+		octave1up();
 		// save result
 		float32_t octave_2_up_f32 = octave1_up_filtered;
 
 		// Write to DAC
-		volatile static float32_t passthrough_volume = 1;
-		volatile static float32_t octave_1_volume = 2;
-		volatile static float32_t octave_2_volume = 0;
+		volatile static float32_t passthrough_volume = 0.4;
+		volatile static float32_t octave_1_volume = 1;
+		volatile static float32_t octave_2_volume = 2;
 		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
 						(int32_t)octave_2_up_f32*octave_2_volume +
 						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
