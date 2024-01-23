@@ -3,7 +3,7 @@
 clear all;
 close all;
 %% FILTERBANK PARAMS
-numberofSubbands=43; % number of subbands
+numberofSubbands=55; % number of subbands
 k=1:numberofSubbands;
 k=k;
 fs=48000; % sampleRate
