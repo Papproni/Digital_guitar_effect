@@ -1,5 +1,5 @@
 Drivers/STM32H7xx_HAL_Driver/stm32h7xx_hal_mdma.o: \
- C:/Users/Aron/Documents/GitHub/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c \
+ C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/STM32H7xx_HAL_Driver/Src/stm32h7xx_hal_mdma.c \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h \
  ../Core/Inc/stm32h7xx_hal_conf.h \
  ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal_rcc.h \

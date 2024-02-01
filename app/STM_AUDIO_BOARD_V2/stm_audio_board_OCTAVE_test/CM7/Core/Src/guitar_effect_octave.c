@@ -7,7 +7,7 @@
 
 #include "guitar_effect_octave.h"
 
-extern guitar_effect_tst guitar_effect_st;
+//extern guitar_effect_tst guitar_effect_st;
 
 /*
  * octave_effect_callback:
@@ -21,7 +21,7 @@ void octave_effect_callback(octave_effect_tst *self){
 /*
  *	This function takes listens if new data is on the input, or the calcualtions for the effect can be calculated!7
  */
-void init_guitar_effect(struct guitar_effect_tst* self){
+void init_octave_effect(struct guitar_effect_tst* self){
 	// TODO
 }
 /*

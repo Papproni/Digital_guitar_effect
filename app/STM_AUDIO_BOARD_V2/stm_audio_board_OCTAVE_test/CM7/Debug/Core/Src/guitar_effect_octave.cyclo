@@ -1,0 +1,3 @@
+../Core/Src/guitar_effect_octave.c:16:6:octave_effect_callback	1
+../Core/Src/guitar_effect_octave.c:24:6:init_octave_effect	1
+../Core/Src/guitar_effect_octave.c:32:6:init_guitar_effect	1
