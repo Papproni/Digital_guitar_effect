@@ -643,29 +643,29 @@ HSEM notification */
 		  // get data from ADC
 		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
 
-//		// +1 octave
-//		subbandfilter_calculation(value_from_ADC/4);
-//		octave1up();
-//		// save result
-//		float32_t octave_1_up_f32 = octave1_up_filtered;
-//
-//		// +2 octave
-//		subbandfilter_octave2_calculation((int32_t)(octave_1_up_f32*4));
-//		octave1up();
-//		// save result
-//		float32_t octave_2_up_f32 = octave1_up_filtered;
-//
-//		// Write to DAC
-//		volatile static float32_t passthrough_volume = 0.4;
-//		volatile static float32_t octave_1_volume = 1*4;
-//		volatile static float32_t octave_2_volume = 2;
-//		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
-//						(int32_t)octave_2_up_f32*octave_2_volume +
-//						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
-//
-//		output_buffer.value= output_test_ac;
+		// +1 octave
+		subbandfilter_calculation(value_from_ADC/4);
+		octave1up();
+		// save result
+		float32_t octave_1_up_f32 = octave1_up_filtered;
 
-		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
+		// +2 octave
+		subbandfilter_octave2_calculation((int32_t)(octave_1_up_f32*4));
+		octave1up();
+		// save result
+		float32_t octave_2_up_f32 = octave1_up_filtered;
+
+		// Write to DAC
+		volatile static float32_t passthrough_volume = 0.4;
+		volatile static float32_t octave_1_volume = 1*4;
+		volatile static float32_t octave_2_volume = 2;
+		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
+						(int32_t)octave_2_up_f32*octave_2_volume +
+						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
+
+		output_buffer.value= output_test_ac;
+
+		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC/4);
 
 		if ( DAC_HALF_COMPLETE_FLAG) {
 			my_data[2] = output_buffer.raw_low;

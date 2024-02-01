@@ -12,15 +12,20 @@
 
 
 // DEFINES
-#define DELAY_BUFFER_LENGTH  48000
+#define DELAY_BUFFER_LENGTH  48000//48000
 
 
 typedef struct delay_parameters_st{
-	float 		time_f32; 			// in ms
-	uint32_t 	time_in_buffer_u32; 	// in buffer location 1 = 1/48 ms
-	float 		mix_f32;  			// delay and input
-	uint8_t 	repeats_u8;			// number of repeats
-	float   	feedback_gain_f32;	// how repeats weaken over time
+	float 		time_f32; 					// in ms
+	uint32_t 	time_in_buffer_u32; 		// in buffer location 1 = 1/48 ms
+	uint32_t 	modulation_in_buffer_u32;	// sets the modulation of the delay
+	uint32_t	modulation_counter_u32;
+	int32_t		modulation_amplitude_i32;
+	uint32_t 	modulation_base_u32;
+	float 		mix_f32;  					// delay and input
+	uint8_t 	repeats_u8;					// number of repeats
+	float   	feedback_gain_f32;			// how repeats weaken over time
+
 }delay_parameters_tst;
 
 typedef struct delay_effects_st{

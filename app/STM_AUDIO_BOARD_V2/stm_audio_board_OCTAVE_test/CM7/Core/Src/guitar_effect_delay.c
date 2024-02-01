@@ -73,6 +73,9 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 
 	increment_current_sample_counter(self);
 
+	// modulation
+	self->parameters_st.time_in_buffer_u32 = DELAY_BUFFER_LENGTH - self->parameters_st.modulation_base_u32 + self->parameters_st.modulation_amplitude_i32*sin((float)self->parameters_st.modulation_counter_u32/(float)self->parameters_st.modulation_in_buffer_u32*6.28);
+	self->parameters_st.modulation_counter_u32++;
 	return self->output_i32;
 }
 
@@ -85,9 +88,20 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 void init_guitar_effect_delay(struct delay_effects_st* self){
 
 	// set basic parameters
-	self->parameters_st.time_in_buffer_u32 	= 24000;	// 0.5 second delay
-	self->parameters_st.mix_f32				= 0.5; 		// 50%
-	self->parameters_st.feedback_gain_f32	= 0.5; 		// 50%
+	self->parameters_st.time_in_buffer_u32 	= DELAY_BUFFER_LENGTH - 512;	// 12ms delay
+	self->parameters_st.modulation_counter_u32 		= 0;
+	self->parameters_st.modulation_in_buffer_u32 	= 25000;						// 1ms
+	self->parameters_st.modulation_amplitude_i32	= 20;
+	self->parameters_st.modulation_base_u32			= 50;
+	self->parameters_st.mix_f32						= 0.5; 		// 50%
+	self->parameters_st.feedback_gain_f32			= 0.5; 		// 50%
+
+
+	self->current_counter_u32 = 0;
+
+	for(int i = 0; i<DELAY_BUFFER_LENGTH;i++){
+		self->buffer_ai32[i] = 0;
+	}
 	// add function pointers
 	self->callback = callback;
 }
