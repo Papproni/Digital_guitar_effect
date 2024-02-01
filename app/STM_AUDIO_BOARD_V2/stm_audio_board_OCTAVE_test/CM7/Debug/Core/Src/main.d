@@ -64,7 +64,8 @@ Core/Src/main.o: ../Core/Src/main.c ../Core/Inc/main.h \
  C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/CMSIS/DSP/Include/dsp/support_functions.h \
  C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/CMSIS/DSP/Include/dsp/quaternion_math_functions.h \
  C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/CMSIS/DSP/Include/dsp/window_functions.h \
- ../Core/Inc/AD1939_driver.h ../Core/Inc/main.h
+ ../Core/Inc/AD1939_driver.h ../Core/Inc/main.h \
+ ../Core/Inc/guitar_effect_delay.h
 ../Core/Inc/main.h:
 ../../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
 ../Core/Inc/stm32h7xx_hal_conf.h:
@@ -133,3 +134,4 @@ C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_boa
 C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Drivers/CMSIS/DSP/Include/dsp/window_functions.h:
 ../Core/Inc/AD1939_driver.h:
 ../Core/Inc/main.h:
+../Core/Inc/guitar_effect_delay.h:

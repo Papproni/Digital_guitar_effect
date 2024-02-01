@@ -1,5 +1,6 @@
 "./Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o"
 "./Core/Src/AD1939_driver.o"
+"./Core/Src/guitar_effect_delay.o"
 "./Core/Src/guitar_effect_octave.o"
 "./Core/Src/main.o"
 "./Core/Src/stm32h7xx_hal_msp.o"
