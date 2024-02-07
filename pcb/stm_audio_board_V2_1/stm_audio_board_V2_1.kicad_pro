@@ -419,7 +419,7 @@
     "pinned_symbol_libs": []
   },
   "meta": {
-    "filename": "stm_audio_board_V2.kicad_pro",
+    "filename": "stm_audio_board_V2_1.kicad_pro",
     "version": 1
   },
   "net_settings": {
@@ -546,6 +546,10 @@
     [
       "b200a1dd-4cf8-4022-8ce8-05ae44769d44",
       "TapTempo (Ext_INT)"
+    ],
+    [
+      "afc0a1ce-c144-442c-b6c8-cbcc7c8b2565",
+      "Footswitch"
     ]
   ],
   "text_variables": {

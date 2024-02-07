@@ -136,6 +136,23 @@
     )
   )
 
+  (sheet (at 165.1 102.87) (size 36.83 26.67) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid afc0a1ce-c144-442c-b6c8-cbcc7c8b2565)
+    (property "Sheetname" "Footswitch" (at 165.1 102.1584 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "Footswitch.kicad_sch" (at 165.1 130.1246 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "stm_audio_board_V2_1"
+        (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "12"))
+      )
+    )
+  )
+
   (sheet (at 165.1 41.91) (size 36.83 19.05) (fields_autoplaced)
     (stroke (width 0.1524) (type solid))
     (fill (color 0 0 0 0.0000))

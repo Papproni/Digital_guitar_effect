@@ -502,6 +502,14 @@
     (uuid fee3001b-4a1c-42fb-b341-123961acf7b4)
   )
 
+  (text_box "NOTE: \n1. The input is level is to high, lower gain is needed\n2. The input filter is too low with R5 and C20. New values needed.\nThe high frequencies are cut down."
+    (at 87.63 29.21 0) (size 57.15 16.51)
+    (stroke (width 0) (type default))
+    (fill (type none))
+    (effects (font (size 1.27 1.27)) (justify left top))
+    (uuid ee831c6e-b8ff-4b65-8010-896641bf905f)
+  )
+
   (global_label "ADC1N" (shape input) (at 219.71 72.39 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left))
     (uuid 04a6dba3-50bc-4ff8-b75f-5a65aa8a49b6)
