@@ -65,8 +65,8 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 	int32_t delayed_sample_i32 = get_delayed_signal(self);
 
 	// feedback calculation input,delayed,feedback
-	self->buffer_ai32[self->current_counter_u32] = 	(uint32_t)( (float)self->buffer_ai32[self->delayed_counter_u32] * self->parameters_st.feedback_gain_f32) +
-													(uint32_t)( (float)self->input_i32 * (1.0 - self->parameters_st.feedback_gain_f32));
+	self->buffer_ai32[self->current_counter_u32] = 	(int32_t)( (float)self->buffer_ai32[self->delayed_counter_u32] * self->parameters_st.feedback_gain_f32) +
+													(int32_t)( (float)self->input_i32 * (1.0 - self->parameters_st.feedback_gain_f32));
 
 	self->output_i32 = (float)delayed_sample_i32*self->parameters_st.mix_f32 +
 						(float)self->input_i32*(1.0 - self->parameters_st.mix_f32);
@@ -74,8 +74,11 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 	increment_current_sample_counter(self);
 
 	// modulation
-	self->parameters_st.time_in_buffer_u32 = DELAY_BUFFER_LENGTH - self->parameters_st.modulation_base_u32 + self->parameters_st.modulation_amplitude_i32*sin((float)self->parameters_st.modulation_counter_u32/(float)self->parameters_st.modulation_in_buffer_u32*6.28);
-	self->parameters_st.modulation_counter_u32++;
+	if( self->modulation_on_u8 ){
+		self->parameters_st.time_in_buffer_u32 = DELAY_BUFFER_LENGTH - self->parameters_st.modulation_base_u32 + self->parameters_st.modulation_amplitude_i32*sin((float)self->parameters_st.modulation_counter_u32/(float)self->parameters_st.modulation_in_buffer_u32*6.28);
+		self->parameters_st.modulation_counter_u32++;
+	}
+
 	return self->output_i32;
 }
 
@@ -88,7 +91,8 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 void init_guitar_effect_delay(struct delay_effects_st* self){
 
 	// set basic parameters
-	self->parameters_st.time_in_buffer_u32 	= DELAY_BUFFER_LENGTH - 512;	// 12ms delay
+	self->parameters_st.time_in_buffer_u32 			= DELAY_BUFFER_LENGTH - DELAY_BUFFER_LENGTH / 16;	// 12ms delay
+	self->modulation_on_u8 							= 0;
 	self->parameters_st.modulation_counter_u32 		= 0;
 	self->parameters_st.modulation_in_buffer_u32 	= 25000;						// 1ms
 	self->parameters_st.modulation_amplitude_i32	= 20;

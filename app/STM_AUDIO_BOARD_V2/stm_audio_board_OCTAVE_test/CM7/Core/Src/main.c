@@ -644,7 +644,7 @@ HSEM notification */
 		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
 
 		// +1 octave
-		subbandfilter_calculation(value_from_ADC/4);
+		subbandfilter_calculation(value_from_ADC);
 		octave1up();
 		// save result
 		float32_t octave_1_up_f32 = octave1_up_filtered;
@@ -665,7 +665,7 @@ HSEM notification */
 
 		output_buffer.value= output_test_ac;
 
-		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC/4);
+		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
 
 		if ( DAC_HALF_COMPLETE_FLAG) {
 			my_data[2] = output_buffer.raw_low;

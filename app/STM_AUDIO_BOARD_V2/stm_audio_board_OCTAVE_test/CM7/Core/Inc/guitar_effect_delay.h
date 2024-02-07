@@ -12,7 +12,8 @@
 
 
 // DEFINES
-#define DELAY_BUFFER_LENGTH  48000//48000
+#define DELAY_BUFFER_LENGTH  96000//48000
+
 
 
 typedef struct delay_parameters_st{
@@ -36,7 +37,7 @@ typedef struct delay_effects_st{
 	// pointers
 	uint32_t 				current_counter_u32;
 	uint32_t 				delayed_counter_u32;
-
+	uint8_t					modulation_on_u8;
 	delay_parameters_tst 	parameters_st;
 
 	// functions
