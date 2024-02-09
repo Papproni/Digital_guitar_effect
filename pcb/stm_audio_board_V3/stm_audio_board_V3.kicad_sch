@@ -22,7 +22,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "2"))
       )
     )
@@ -42,7 +42,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "3"))
       )
     )
@@ -59,7 +59,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "8"))
       )
     )
@@ -76,7 +76,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "5"))
       )
     )
@@ -93,7 +93,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "10"))
       )
     )
@@ -113,7 +113,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "9"))
       )
     )
@@ -130,7 +130,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "7"))
       )
     )
@@ -147,7 +147,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "12"))
       )
     )
@@ -170,7 +170,7 @@
       (effects (font (size 1.27 1.27)) hide)
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "11"))
       )
     )
@@ -187,7 +187,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "4"))
       )
     )
@@ -204,7 +204,7 @@
       (effects (font (size 1.27 1.27)) (justify left top))
     )
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71" (page "6"))
       )
     )

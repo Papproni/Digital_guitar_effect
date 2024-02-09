@@ -2055,7 +2055,7 @@
     (pin "1" (uuid bae3fe08-d5c7-45cf-852f-18697310f7a8))
     (pin "2" (uuid 7b629d38-5f7d-4d00-b87f-f7e947569be2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -2083,7 +2083,7 @@
     )
     (pin "1" (uuid 4aa8770c-88e0-4a04-ac9d-b32ce92d1cb8))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -2113,7 +2113,7 @@
     (pin "2" (uuid a0901889-47fc-43b8-b45c-fa80af209755))
     (pin "3" (uuid 1df3985c-b705-4aa0-a7f5-f37cdb2dd94c))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "U3") (unit 1)
         )
@@ -2140,7 +2140,7 @@
     (pin "2" (uuid d9a79fb0-516e-4443-8c84-8e7eec77dcef))
     (pin "3" (uuid f8f61761-1f18-4738-885c-b846e298502d))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "U9") (unit 1)
         )
@@ -2172,7 +2172,7 @@
     (pin "1" (uuid 0cf71e32-11a8-4c7a-884d-aa539e99d497))
     (pin "2" (uuid fd59b77b-800c-47f4-8b53-5f9827a16ef4))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "D1") (unit 1)
         )
@@ -2200,7 +2200,7 @@
     )
     (pin "1" (uuid 273d3ab9-9171-441c-8548-09b97909bd7a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR020") (unit 1)
         )
@@ -2225,7 +2225,7 @@
     )
     (pin "1" (uuid c96634ae-b0c6-4bd4-81b8-ef1a7c2bbddb))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2253,7 +2253,7 @@
     )
     (pin "1" (uuid a1a8fc4f-1d78-4bfe-8fb0-5fe3ace6f5b9))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR077") (unit 1)
         )
@@ -2278,7 +2278,7 @@
     )
     (pin "1" (uuid e0d01022-0fcd-4b56-a29d-cc5402545277))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2307,7 +2307,7 @@
     (pin "1" (uuid 159feae4-835e-49bb-8541-09e68c2c7659))
     (pin "2" (uuid 9cfa18e1-cf71-41d4-a377-1b03a13cd0bd))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C1") (unit 1)
         )
@@ -2342,7 +2342,7 @@
     (pin "4" (uuid c2a5b266-eb8d-44d5-8668-fe2790c8bb33))
     (pin "8" (uuid d01d3ab3-d71e-426f-a491-2c20ed88c31a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "U4") (unit 3)
         )
@@ -2370,7 +2370,7 @@
     )
     (pin "1" (uuid 1c722763-0668-4a5b-8ddc-cb6e60b78bdb))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2399,7 +2399,7 @@
     (pin "1" (uuid 79ac16e4-1623-493f-8a96-f4cf02fe5220))
     (pin "2" (uuid 0994d04e-0ff7-4f2b-8d8b-ab751e064f55))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -2428,7 +2428,7 @@
     (pin "1" (uuid efef15d6-0dae-42fd-953b-e91cc73dc86c))
     (pin "2" (uuid cd915e73-f003-44ef-93ac-4260608f1c95))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C30") (unit 1)
         )
@@ -2456,7 +2456,7 @@
     )
     (pin "1" (uuid 1b05f8f2-4966-4525-a393-a71dc218c583))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2491,7 +2491,7 @@
     (pin "1" (uuid 13ab924b-6dda-4ed3-b724-406f43c867db))
     (pin "2" (uuid 02dc6a9f-422e-48bf-9d6a-63afb59a3d82))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "D1") (unit 1)
         )
@@ -2519,7 +2519,7 @@
     )
     (pin "1" (uuid aac306be-540c-492f-a1f5-a8396fe9e012))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2547,7 +2547,7 @@
     )
     (pin "1" (uuid e7ee948d-5be3-4e44-9992-25b01748308a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2575,7 +2575,7 @@
     )
     (pin "1" (uuid f20f139e-aef4-49cf-b54c-150890c6a847))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR080") (unit 1)
         )
@@ -2601,7 +2601,7 @@
     (pin "1" (uuid 816998f7-0900-4d25-b2d9-8e95e45237dd))
     (pin "2" (uuid be1d7eba-f531-4024-8248-a02d12ef31f5))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -2630,7 +2630,7 @@
     (pin "1" (uuid c18739cb-52bc-49b1-9723-f8c2e32e5d6a))
     (pin "2" (uuid 111b3a66-32de-40b9-9361-87279810d3a5))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C28") (unit 1)
         )
@@ -2658,7 +2658,7 @@
     )
     (pin "1" (uuid 3588f835-9241-4083-a4d5-c5840f78362e))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -2688,7 +2688,7 @@
     (pin "2" (uuid 80cdf3b5-59cb-4b77-8a4f-78aa4d1d9106))
     (pin "3" (uuid 8b805295-bcbe-4ab5-8d60-473765096546))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "U5") (unit 1)
         )
@@ -2714,7 +2714,7 @@
     (pin "1" (uuid 7053c27d-b85f-4565-af8f-18d2dbf3863d))
     (pin "2" (uuid 25315267-0ce0-4073-976f-bf9b13194021))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C4") (unit 1)
         )
@@ -2742,7 +2742,7 @@
     )
     (pin "1" (uuid 7a5fdafa-a02c-48cb-9b9e-c06daca22f2f))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR076") (unit 1)
         )
@@ -2767,7 +2767,7 @@
     )
     (pin "1" (uuid fb3d8497-17f4-4d9d-a216-85f52543460d))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2795,7 +2795,7 @@
     )
     (pin "1" (uuid 6ded01b6-959f-4184-80cf-28af47ff7130))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR044") (unit 1)
         )
@@ -2820,7 +2820,7 @@
     )
     (pin "1" (uuid 7d1a5797-c906-4b15-8fee-87ce2ae07be4))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR087") (unit 1)
         )
@@ -2846,7 +2846,7 @@
     (pin "1" (uuid 7070d33f-4427-4a13-b653-e445637aef76))
     (pin "2" (uuid 9eba5894-7218-4ef0-88e2-69100c2ea88f))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "FB3") (unit 1)
         )
@@ -2871,7 +2871,7 @@
     )
     (pin "1" (uuid 77e4f34d-d8d1-4437-8ffd-ce4d4c86e0a2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -2962,7 +2962,7 @@
     (pin "63" (uuid 3315881e-fbc6-4051-a178-1257733ddd8d))
     (pin "64" (uuid 93e795e8-5aeb-4edc-9249-f8be78e64632))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/8744407a-1e34-4228-b7c6-9fdc39f322d4"
           (reference "U11") (unit 2)
         )
@@ -2991,7 +2991,7 @@
     (pin "1" (uuid b63065fc-af02-4d55-86e8-2539e40fb89e))
     (pin "2" (uuid 82a7539e-027c-4d02-93d7-646ea15881ff))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C2") (unit 1)
         )
@@ -3026,7 +3026,7 @@
     (pin "1" (uuid 6425a9ce-ab1a-45ac-8ec5-fe3b5bbb4f24))
     (pin "2" (uuid e9047e5b-c9f6-407b-af1f-619d7aa5a389))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "D1") (unit 1)
         )
@@ -3055,7 +3055,7 @@
     (pin "1" (uuid 81e37be2-5e9d-4262-8bd0-3b1b60c3c5f5))
     (pin "2" (uuid f3f31555-1a8f-4229-ac3a-ba8e1ee183c7))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -3083,7 +3083,7 @@
     )
     (pin "1" (uuid 9277c5e6-ffe9-441e-9c76-e174d8ec162c))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -3111,7 +3111,7 @@
     )
     (pin "1" (uuid 94eaf3bf-1c24-4a17-8f6c-52eb1604a8c4))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3139,7 +3139,7 @@
     )
     (pin "1" (uuid 23f85785-a312-4d7d-8b1d-fc99ac1291a2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR074") (unit 1)
         )
@@ -3165,7 +3165,7 @@
     (pin "1" (uuid 5048e4ee-2bcb-4c0f-a328-2dc9acad9193))
     (pin "2" (uuid 374a3a90-c218-4601-af01-4d57bd96624a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C29") (unit 1)
         )
@@ -3194,7 +3194,7 @@
     (pin "1" (uuid 6a08c0f1-6e34-45a8-b2ef-df6f08990b5c))
     (pin "2" (uuid 7ce1888a-f7dd-4b7a-b291-a8a604d3940d))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "FB4") (unit 1)
         )
@@ -3219,7 +3219,7 @@
     )
     (pin "1" (uuid 1709d4f5-3ee3-4b8f-9bb7-3465dec261cd))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3247,7 +3247,7 @@
     )
     (pin "1" (uuid ba2320bc-a046-4bcb-aa35-0487dcdf6979))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3276,7 +3276,7 @@
     (pin "1" (uuid b3c7eeef-350a-4160-a5ba-d85b7fa7a84b))
     (pin "2" (uuid bcc3be45-b39a-4386-a7ab-1fdfb3768483))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -3304,7 +3304,7 @@
     )
     (pin "1" (uuid 0a415f62-3641-420f-953e-689123d3214f))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3334,7 +3334,7 @@
     (pin "2" (uuid 29c594d4-d0d4-4d49-8deb-7a04fbe0c9bd))
     (pin "3" (uuid 5a1dce7d-03f7-4fba-b153-9aa33802c958))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "U6") (unit 1)
         )
@@ -3366,7 +3366,7 @@
     (pin "7" (uuid f09e6ddf-0019-4152-ac16-4019c92587e4))
     (pin "8" (uuid b476420f-267f-4e91-9637-8b6cb39c00d4))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "7660S1") (unit 1)
         )
@@ -3391,7 +3391,7 @@
     )
     (pin "1" (uuid 1a85bea2-4f60-4a39-bf37-3dd1015d7f82))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -3419,7 +3419,7 @@
     )
     (pin "1" (uuid 7db991b9-f22c-4b95-b7a0-0ddaadb5806b))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3448,7 +3448,7 @@
     (pin "1" (uuid 4134835b-06f6-4ee0-a9c4-4b23967030bf))
     (pin "2" (uuid 25012c9b-8f55-47b3-8754-6a4cfc0c470b))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -3477,7 +3477,7 @@
     (pin "1" (uuid b8e5af1a-244b-412b-82cb-4e9b468b2925))
     (pin "2" (uuid 66cccb39-17db-4ddd-957c-969e2a55dad0))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -3505,7 +3505,7 @@
     )
     (pin "1" (uuid a6e086ab-02d6-4b8d-8f8e-57f3c72efa6a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -3540,7 +3540,7 @@
     (pin "1" (uuid b6d3cfcc-bbfc-48bc-a2df-8c17254f0f4b))
     (pin "2" (uuid 4990ebc5-5b5d-417c-b556-7d20ee1e794b))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "D1") (unit 1)
         )
@@ -3568,7 +3568,7 @@
     )
     (pin "1" (uuid e5ae4506-870b-4016-a9be-6cd50ab2861f))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3603,7 +3603,7 @@
     (pin "4" (uuid 641f9605-8b52-43df-8abe-7590449b5295))
     (pin "8" (uuid cc5f7778-87e4-4a7a-8299-4250b03cc05a))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/83920463-7bb1-4088-aad8-702bcdea14ea"
           (reference "U2") (unit 3)
         )
@@ -3631,7 +3631,7 @@
     )
     (pin "1" (uuid b1173484-2506-4bb9-8ae9-93ccb8e72322))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3659,7 +3659,7 @@
     )
     (pin "1" (uuid a8cbba7a-9c04-4dc6-bfdd-4b0b554d6ff2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3688,7 +3688,7 @@
     (pin "1" (uuid 7a98eeeb-e613-44cd-b6ee-eca4af2475bc))
     (pin "2" (uuid a405b17e-cb11-41e5-847d-4f19a0d227c2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C2") (unit 1)
         )
@@ -3717,7 +3717,7 @@
     (pin "1" (uuid 5e653a94-a066-4546-bc4c-0625ad582081))
     (pin "2" (uuid 318ce63b-f070-472e-9efd-aaf88b4c05d4))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C2") (unit 1)
         )
@@ -3746,7 +3746,7 @@
     (pin "1" (uuid c174f2a7-3cc8-46ef-9bc9-c463adc2e63b))
     (pin "2" (uuid 3bfbf157-bc66-4f0c-88f3-078ccdb7e3a2))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C4") (unit 1)
         )
@@ -3774,7 +3774,7 @@
     )
     (pin "1" (uuid 58947341-abf7-4624-a4e5-6a4ad9928cf3))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -3802,7 +3802,7 @@
     )
     (pin "1" (uuid 0c42c61a-b618-4f27-a50e-cbf6eb072a2e))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR082") (unit 1)
         )
@@ -3830,7 +3830,7 @@
     )
     (pin "1" (uuid 141727ae-eff4-4f75-8be0-1d2657146f1c))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR02") (unit 1)
         )
@@ -3859,7 +3859,7 @@
     (pin "1" (uuid e75b6946-40b2-4ad4-8632-1272bc8d762c))
     (pin "2" (uuid 8e629dd7-d5cc-4472-bda3-bb10556b15de))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C3") (unit 1)
         )
@@ -3887,7 +3887,7 @@
     )
     (pin "1" (uuid 86f81948-3277-4b37-ab82-f444e0d3e407))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71/2eb2ee8f-ab98-4666-97f0-bfacb073bc88"
           (reference "#PWR075") (unit 1)
         )
@@ -3912,7 +3912,7 @@
     )
     (pin "1" (uuid 94b41b44-7c1e-4fb8-9d17-ed0730647fa0))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "#PWR03") (unit 1)
         )
@@ -3941,7 +3941,7 @@
     (pin "1" (uuid 7fd5c0d1-12e1-4b4a-b6e2-34d340f728c2))
     (pin "2" (uuid fd9a9abe-ab75-40d4-9183-a3a824ba64c0))
     (instances
-      (project "stm_audio_board_V2_1"
+      (project "stm_audio_board_V3"
         (path "/6997cf63-2615-4e49-9471-e7da1b6bae71"
           (reference "C27") (unit 1)
         )
