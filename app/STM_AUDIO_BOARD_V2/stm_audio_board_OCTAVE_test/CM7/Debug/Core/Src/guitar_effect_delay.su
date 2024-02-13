@@ -1,2 +1,2 @@
 ../Core/Src/guitar_effect_delay.c:59:16:callback	16	static
-../Core/Src/guitar_effect_delay.c:88:6:init_guitar_effect_delay	16	static
+../Core/Src/guitar_effect_delay.c:91:6:init_guitar_effect_delay	16	static

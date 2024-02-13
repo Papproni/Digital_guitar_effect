@@ -5,6 +5,6 @@
 ../Core/Src/main.c:477:6:HAL_I2S_RxCpltCallback	2
 ../Core/Src/main.c:486:6:HAL_I2S_TxHalfCpltCallback	2
 ../Core/Src/main.c:494:6:HAL_I2S_TxCpltCallback	2
-../Core/Src/main.c:694:6:SystemClock_Config	5
-../Core/Src/main.c:508:5:main	12
-../Core/Src/main.c:934:6:Error_Handler	1
+../Core/Src/main.c:740:6:SystemClock_Config	5
+../Core/Src/main.c:508:5:main	16
+../Core/Src/main.c:980:6:Error_Handler	1

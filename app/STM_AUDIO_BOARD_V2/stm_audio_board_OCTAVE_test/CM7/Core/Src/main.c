@@ -635,13 +635,19 @@ HSEM notification */
 
   delay_effects_tst delay_effect;
   init_guitar_effect_delay(&delay_effect);
+  float32_t freq_f32 = 4.0;
 
+	volatile float32_t n_2;
+	volatile float32_t len_f32 = 48000;
+
+	float mul_val_f32 = 0;
+	int state = 1;
   while (1)
   {
 	  if (ADC_READY_FLAG){
 		  ADC_READY_FLAG  = 0;
 		  // get data from ADC
-		int32_t value_from_ADC = adc_data_bf.value; //value_from_ADC_HighByte | value_from_ADC_LowByte;
+		int32_t value_from_ADC = adc_data_bf.value/2; //value_from_ADC_HighByte | value_from_ADC_LowByte;
 
 		// +1 octave
 		subbandfilter_calculation(value_from_ADC);
@@ -652,20 +658,60 @@ HSEM notification */
 		// +2 octave
 		subbandfilter_octave2_calculation((int32_t)(octave_1_up_f32*4));
 		octave1up();
-		// save result
+//		 save result
 		float32_t octave_2_up_f32 = octave1_up_filtered;
 
 		// Write to DAC
-		volatile static float32_t passthrough_volume = 0.4;
-		volatile static float32_t octave_1_volume = 1*4;
+		volatile static float32_t passthrough_volume = 0.3;
+		volatile static float32_t octave_1_volume = 4;
 		volatile static float32_t octave_2_volume = 2;
 		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
 						(int32_t)octave_2_up_f32*octave_2_volume +
 						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
 
 		output_buffer.value= output_test_ac;
-
 		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
+
+		// tremolo
+
+//		if (sin(freq_f32*6.28*n/len) > 0){
+//			mul_val_f32 = 1;
+//		}
+		if(value_from_ADC>0x1FFFFF00){
+			len_f32 = 500;
+		}else{
+			len_f32 += 0.1;
+		}
+		if( len_f32 > 10000){
+			len_f32  = 10000;
+		}
+
+		if(state){
+			mul_val_f32=(float)n_2/len_f32;
+			n_2=n_2+1;
+		}else{
+			mul_val_f32=(float)n_2/len_f32;
+			n_2= n_2-1;
+		}
+
+		if(n_2>=len_f32){
+			state= 0;
+		}
+		if(n_2 == 0){
+			state=1;
+		}
+
+		if(mul_val_f32 >1.0){
+			mul_val_f32 = 1.0;
+		}
+
+		//mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
+		output_buffer.value = (int32_t)((float32_t)output_test_ac * mul_val_f32);
+		if(abs(output_test_ac)<abs(output_buffer.value)){
+			len_f32 = 9999;
+		}
+
+
 
 		if ( DAC_HALF_COMPLETE_FLAG) {
 			my_data[2] = output_buffer.raw_low;

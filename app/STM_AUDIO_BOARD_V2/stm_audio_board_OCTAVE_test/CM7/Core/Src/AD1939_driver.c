@@ -77,7 +77,7 @@ int ad1939_init(SPI_HandleTypeDef* hspi_codec) {
     	// wait till pll is locked takes about 10 ms acc to datasheet
     }
     // DAC settings
-    if (ad1939_write_reg(AD1939_DAC_Control_0, 0x00)) return -1;
+    if (ad1939_write_reg(AD1939_DAC_Control_0, 0b00000000)) return -1;
     if (ad1939_write_reg(AD1939_DAC_Control_1, 0b00000000)) return -1; // Slave setup
     //if (ad1939_write_reg(AD1939_DAC_Control_1, 0b01110000)) return -1; // MASTER setup
     if (ad1939_write_reg(AD1939_DAC_Control_2, 0b00000000)) return -1;
