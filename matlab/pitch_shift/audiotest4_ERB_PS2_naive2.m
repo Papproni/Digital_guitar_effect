@@ -15,7 +15,7 @@ numberofSubbands=55; % number of subbands
 k=1:numberofSubbands;
 k=k;
 fs=44100; % sampleRate
-[input,fs] = audioread("../all_of_it/guitar_ONE_chords.wav");
+[input,fs] = audioread("../all_of_it/guitar_fast_picking.wav");
 
 input=input';
 fmin=20; %minimum frequency
