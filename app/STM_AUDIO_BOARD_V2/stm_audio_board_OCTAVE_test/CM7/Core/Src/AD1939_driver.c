@@ -77,6 +77,11 @@ int ad1939_init(SPI_HandleTypeDef* hspi_codec) {
     	// wait till pll is locked takes about 10 ms acc to datasheet
     }
     // DAC settings
+    // 192 khz
+    //    if (ad1939_write_reg(AD1939_DAC_Control_0, 0b00000100)) return -1;
+    // 96 khz
+//            if (ad1939_write_reg(AD1939_DAC_Control_0, 0b00000010)) return -1;
+    // 48 Khz
     if (ad1939_write_reg(AD1939_DAC_Control_0, 0b00000000)) return -1;
     if (ad1939_write_reg(AD1939_DAC_Control_1, 0b00000000)) return -1; // Slave setup
     //if (ad1939_write_reg(AD1939_DAC_Control_1, 0b01110000)) return -1; // MASTER setup
@@ -91,6 +96,11 @@ int ad1939_init(SPI_HandleTypeDef* hspi_codec) {
     if (ad1939_write_reg(AD1939_DAC_Vol_R2, 0x00)) return -1; // no attenuation
 
     // ADC settings
+    // 192 khz
+	//    if (ad1939_write_reg(AD1939_ADC_Control_0, 0b10000000)) return -1;
+    // 96khz
+//        if (ad1939_write_reg(AD1939_ADC_Control_0, 0b01000000)) return -1;
+        // 48 Khz
     if (ad1939_write_reg(AD1939_ADC_Control_0, 0b00000000)) return -1;
     if (ad1939_write_reg(AD1939_ADC_Control_1, 0x00 )) return -1;
     if (ad1939_write_reg(AD1939_ADC_Control_2, 0x00 )) return -1;

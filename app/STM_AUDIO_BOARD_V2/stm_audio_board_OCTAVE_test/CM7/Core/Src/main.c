@@ -76,6 +76,66 @@ static void MX_I2S1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+
+
+volatile int BufSize = 6000;
+volatile int Overlap = 3000;
+
+volatile int Buf[10000];
+
+volatile int WtrP;
+volatile float Rd_P;
+volatile float CrossFade;
+
+
+int Do_PitchShift(int sample) {
+	static float Shift = 0.5;
+	int sum = sample;
+	//sum up and do high-pass
+
+
+	//write to ringbuffer
+	Buf[WtrP] = sum;
+
+	//read fractional readpointer and generate 0° and 180° read-pointer in integer
+	int RdPtr_Int = roundf(Rd_P);
+	int RdPtr_Int2 = 0;
+	if (RdPtr_Int >= BufSize/2) RdPtr_Int2 = RdPtr_Int - (BufSize/2);
+	else RdPtr_Int2 = RdPtr_Int + (BufSize/2);
+
+	//read the two samples...
+	float Rd0 = (float) Buf[RdPtr_Int];
+	float Rd1 = (float) Buf[RdPtr_Int2];
+
+	//Check if first readpointer starts overlap with write pointer?
+	// if yes -> do cross-fade to second read-pointer
+	if (Overlap >= (WtrP-RdPtr_Int) && (WtrP-RdPtr_Int) >= 0 && Shift!=1.0f) {
+		int rel = WtrP-RdPtr_Int;
+		CrossFade = ((float)rel)/(float)Overlap;
+	}
+	else if (WtrP-RdPtr_Int == 0) CrossFade = 0.0f;
+
+	//Check if second readpointer starts overlap with write pointer?
+	// if yes -> do cross-fade to first read-pointer
+	if (Overlap >= (WtrP-RdPtr_Int2) && (WtrP-RdPtr_Int2) >= 0 && Shift!=1.0f) {
+			int rel = WtrP-RdPtr_Int2;
+			CrossFade = 1.0f - ((float)rel)/(float)Overlap;
+		}
+	else if (WtrP-RdPtr_Int2 == 0) CrossFade = 1.0f;
+
+
+	//do cross-fading and sum up
+	sum = (Rd0*CrossFade + Rd1*(1.0f-CrossFade));
+
+	//increment fractional read-pointer and write-pointer
+	Rd_P += Shift;
+	WtrP++;
+	if (WtrP == BufSize) WtrP = 0;
+	if (roundf(Rd_P) >= BufSize) Rd_P = 0.0f;
+
+	return sum;
+}
+
 volatile uint16_t my_data[8];// __ALIGNED(32) __attribute__((at(0x24000000)));
 volatile uint16_t rx_data_i2s[8];// __ALIGNED(32) __attribute__((at(0x24000000)));
 
@@ -435,6 +495,7 @@ volatile float32_t octave1_up=0.0;
 volatile float32_t octave1_up_filtered=0.0;
 // octave Filter
 arm_biquad_cascade_df2T_instance_f32 highpass_iir_50hz;
+arm_biquad_cascade_df2T_instance_f32 highpass_iir_50hz_octave2;
 volatile float32_t highpass_coeff[5]={0.99538200, -1.99076399, 0.99538200, 1.99074267, -0.99078531};
 volatile float32_t highpass_state[10];
 
@@ -449,6 +510,18 @@ void octave1up(){
 
 	// filter the DC component out
 	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz, &octave1_up, &octave1_up_filtered, 1);
+}
+
+void octave2up(){
+	// get absolute values of subbands
+	arm_abs_f32(subbandfilter_output, subband_absolute_value, numberofsubbands);
+
+
+	// add the octave subbands together
+	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up);
+
+	// filter the DC component out
+	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz_octave2, &octave1_up, &octave1_up_filtered, 1);
 }
 
 typedef union
@@ -499,6 +572,9 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s){
 //	my_data[6] = out2;
 //	my_data[7] = out3;
 }
+
+
+
 /* USER CODE END 0 */
 
 /**
@@ -607,6 +683,7 @@ HSEM notification */
 //  HAL_I2S_Transmit_DMA(&hi2s2, my_data, 4);
   // init specaial DSP instance
   arm_biquad_cascade_df2T_init_f32(&highpass_iir_50hz, 1, &highpass_coeff, &highpass_state);
+  arm_biquad_cascade_df2T_init_f32(&highpass_iir_50hz_octave2, 1, &highpass_coeff, &highpass_state);
   for(uint8_t i = 0; i<numberofsubbands;i++){
 	  subband_ones[i] = 1.0;
   }
@@ -642,6 +719,11 @@ HSEM notification */
 
 	float mul_val_f32 = 0;
 	int state = 1;
+
+//	WtrP = 0;
+//	Rd_P = 0.0f;
+//	Shift = 0.5f;
+//	CrossFade = 1.0f;
   while (1)
   {
 	  if (ADC_READY_FLAG){
@@ -657,61 +739,66 @@ HSEM notification */
 
 		// +2 octave
 		subbandfilter_octave2_calculation((int32_t)(octave_1_up_f32*4));
-		octave1up();
+		octave2up();
 //		 save result
 		float32_t octave_2_up_f32 = octave1_up_filtered;
 
 		// Write to DAC
 		volatile static float32_t passthrough_volume = 0.3;
 		volatile static float32_t octave_1_volume = 4;
-		volatile static float32_t octave_2_volume = 2;
+		volatile static float32_t octave_2_volume = 0;
 		output_test_ac=	(int32_t)octave_1_up_f32*octave_1_volume +
 						(int32_t)octave_2_up_f32*octave_2_volume +
 						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
 
-		output_buffer.value= output_test_ac;
-		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
+		//output_buffer.value=output_test_ac;
+		output_buffer.value= Do_PitchShift(value_from_ADC) + output_test_ac;
 
-		// tremolo
 
-//		if (sin(freq_f32*6.28*n/len) > 0){
-//			mul_val_f32 = 1;
+		output_buffer.value = delay_effect.callback(&delay_effect,output_buffer.value);
+//
+//		// tremolo
+//
+////		if (sin(freq_f32*6.28*n/len) > 0){
+////			mul_val_f32 = 1;
+////		}
+//		if(value_from_ADC>0x1FFFFF00){
+//			len_f32 = 500;
+//		}else{
+//			len_f32 += 0.1;
 //		}
-		if(value_from_ADC>0x1FFFFF00){
-			len_f32 = 500;
-		}else{
-			len_f32 += 0.1;
-		}
-		if( len_f32 > 10000){
-			len_f32  = 10000;
-		}
-
-		if(state){
-			mul_val_f32=(float)n_2/len_f32;
-			n_2=n_2+1;
-		}else{
-			mul_val_f32=(float)n_2/len_f32;
-			n_2= n_2-1;
-		}
-
-		if(n_2>=len_f32){
-			state= 0;
-		}
-		if(n_2 == 0){
-			state=1;
-		}
-
-		if(mul_val_f32 >1.0){
-			mul_val_f32 = 1.0;
-		}
-
-		//mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
-		output_buffer.value = (int32_t)((float32_t)output_test_ac * mul_val_f32);
-		if(abs(output_test_ac)<abs(output_buffer.value)){
-			len_f32 = 9999;
-		}
+//		if( len_f32 > 10000){
+//			len_f32  = 10000;
+//		}
+//
+//		if(state){
+//			mul_val_f32=(float)n_2/len_f32;
+//			n_2=n_2+1;
+//		}else{
+//			mul_val_f32=(float)n_2/len_f32;
+//			n_2= n_2-1;
+//		}
+//
+//		if(n_2>=len_f32){
+//			state= 0;
+//		}
+//		if(n_2 == 0){
+//			state=1;
+//		}
+//
+//		if(mul_val_f32 >1.0){
+//			mul_val_f32 = 1.0;
+//		}
+//
+//		//mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
+//		output_buffer.value = (int32_t)((float32_t)output_test_ac * mul_val_f32);
+//		if(abs(output_test_ac)<abs(output_buffer.value)){
+//			len_f32 = 9999;
+//		}
 
 
+//		output_buffer.value = Do_PitchShift(value_from_ADC);
+//		output_buffer.value = output_test_ac;
 
 		if ( DAC_HALF_COMPLETE_FLAG) {
 			my_data[2] = output_buffer.raw_low;
