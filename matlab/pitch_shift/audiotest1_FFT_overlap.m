@@ -6,17 +6,17 @@ close all;
 clear all;
 %% import audio file
 [input,Fs] = audioread("../all_of_it/guitar_fast_picking.wav");
-input=lowpass(input,15000,Fs);
-comp=compressor(10);
-input=comp(input);
+input=lowpass(input,5000,Fs);
+%comp=compressor(10);
+%input=comp(input);
 %for i=1:length(y)
 
 %% time domain to frequency 
-sampleSize=2^16;
-octave_up_1=1;
-octave_up_2=0;
-original=1;
-octave_down_1=1;
+sampleSize=2^12;
+octave_up_1 = 1;
+octave_up_2 = 0;
+original    = 1;
+octave_down_1= 1;
 overlap=0.5% 0.5= 50% must be > 0!
 
 window_function = window(@hann,sampleSize);
@@ -35,6 +35,8 @@ last_Phase=zeros(length(sampleSize),1);
 
 startposition=50000;
 j=startposition;
+
+first_run = 1;
 while (j+sampleSize)<length(input)
     close all;
     block_end=j+sampleSize-1;
@@ -55,7 +57,7 @@ while (j+sampleSize)<length(input)
     fft_complex_copy_3=zeros(sampleSize,1);
     %% OCTAVE UPx1
     for i=2:(length(fft_complex)/2)
-        fft_complex(i+i)=fft_complex_copy(i);
+        fft_complex(i)=fft_complex_copy(i);
         %wrapTo2Pi(last_Phase[i+i]+Fs/(2*pi)*sampleSize);
         
     end
@@ -72,9 +74,25 @@ while (j+sampleSize)<length(input)
         fft_complex_copy_3(round(i/2))=fft_complex_copy(i);
     end
 
+    %% PHASE ALIGNMENT
+    ymag        = abs(fft_complex);
+    if first_run
+        first_run = 0;
+        yangle = angle(fft_complex);
+        ysangle = yangle;
+    end
+
+    yprevangle  = yangle; 
+    yangle      = angle(fft_complex);
+    unwrapdata = 2*pi*sampleSize/2*(0:sampleSize-1)'/sampleSize;
+    yunwrap = (yangle - yprevangle) - unwrapdata;
+    yunwrap = yunwrap - round(yunwrap/(2*pi))*2*pi;
+    yunwrap = (yunwrap + unwrapdata) * overlap;
     
+    ysangle = ysangle + yunwrap;
+    fft_complex = ymag .* complex(cos(ysangle), sin(ysangle));
     %fft_complex=fft_complex*octave_up_1+fft_complex_copy_2;%+fft_complex_copy*original;
-    fft_complex=fft_complex*octave_up_1+fft_complex_copy_2*octave_up_2+fft_complex_copy_3*octave_down_1;
+    fft_complex=fft_complex*octave_up_1; %+fft_complex_copy_2*octave_up_2+fft_complex_copy_3*octave_down_1;
     inverse=ifft(real(fft_complex),"symmetric");
     
     %% output
@@ -102,47 +120,12 @@ end
  %hold off
 %plot(output)
 
-output = pitch_shift(input,Fs,10);
+
 
 output = lowpass(output, 15000, Fs);
 audiowrite('FFT_output.wav',output,Fs);
-%sound(output,Fs)
+sound(output,Fs)
 %audiowrite('Octave_1_UP.wav',output,Fs);
 %Open_Spec_File = 'C:\ST\workspaces\stm32Audio\MATLAB\Octave_1_UP.wav'
 %winopen(Open_Spec_File)
-%%play(audioplayer(output,48000))
-
-
-function shifted_sound = pitch_shift(sound, fs, semitones_shift)
-    % Input:
-    % sound: input sound sample
-    % fs: sampling frequency of the sound sample
-    % semitones_shift: number of semitones to shift the pitch (positive or negative)
-    % Output:
-    % shifted_sound: pitch-shifted sound sample
-    
-    % Convert semitones shift to a pitch ratio
-    pitch_ratio = 2^(semitones_shift/12);
-
-    % Define the new length of the sound sample after pitch shifting
-    new_length = ceil(length(sound) / pitch_ratio);
-
-    % Initialize the shifted sound sample
-    shifted_sound = zeros(new_length, 1);
-
-    % Perform pitch shifting using linear interpolation
-    for i = 1:new_length
-        old_index = i * pitch_ratio;
-        lower_index = floor(old_index);
-        upper_index = min(ceil(old_index), length(sound));
-
-        if lower_index == upper_index
-            shifted_sound(i) = sound(lower_index);
-        else
-            shifted_sound(i) = (sound(upper_index) - sound(lower_index)) * (old_index - lower_index) + sound(lower_index);
-        end
-    end
-
-    % Resample the shifted sound to match the original sampling rate
-    shifted_sound = resample(shifted_sound, fs, fs * pitch_ratio);
-end
+%play(audioplayer(output,Fs))
