@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>C:\Projects\git\onlab\Digital_guitar_effect\pcb\jack_io_board\jack_io_board\jack_io_board.kicad_sch</source>
+    <date>2/22/2024 9:59:53 PM</date>
+    <tool>Eeschema 7.0.2</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title/>
+        <company/>
+        <rev/>
+        <date/>
+        <source>jack_io_board.kicad_sch</source>
+        <comment number="1" value=""/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="J1">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a3c5bcb8-afec-48c6-bb58-c05db9509425</tstamps>
+    </comp>
+    <comp ref="J2">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ffc51e99-3d96-45bf-ae0e-a74d16f751c5</tstamps>
+    </comp>
+    <comp ref="J3">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>57122fc7-0a6e-4900-b5e9-914b72d17695</tstamps>
+    </comp>
+    <comp ref="J4">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ad60b259-41cf-4680-915c-1baf662aeb28</tstamps>
+    </comp>
+    <comp ref="J5">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>81294d7d-9f9d-4891-bc81-8c8605f176c6</tstamps>
+    </comp>
+    <comp ref="J6">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>06ab426b-40c9-4de2-9542-114c766358f0</tstamps>
+    </comp>
+    <comp ref="J7">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>11f2e7ff-006e-4cd5-9ad1-3ea3ee7eff59</tstamps>
+    </comp>
+    <comp ref="J8">
+      <value>NMJ6HFD2</value>
+      <footprint>Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HCD2_Horizontal</footprint>
+      <datasheet>https://www.neutrik.com/en/product/nmj6hfd2</datasheet>
+      <libsource lib="Connector_Audio" part="NMJ6HFD2" description="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="Sheetname" value=""/>
+      <property name="Sheetfile" value="jack_io_board.kicad_sch"/>
+      <property name="ki_description" value="M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins"/>
+      <property name="ki_keywords" value="audio jack receptacle stereo headphones connector neutrik"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>11d02777-9fe4-4de7-a3ec-3b172394b1a7</tstamps>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="Connector_Audio" part="NMJ6HFD2">
+      <description>M Series, 6.35mm (1/4in) stereo jack, switched, with full threaded nose and straight PCB pins</description>
+      <docs>https://www.neutrik.com/en/product/nmj6hfd2</docs>
+      <footprints>
+        <fp>Jack*</fp>
+      </footprints>
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">NMJ6HFD2</field>
+        <field name="Footprint">Connector_Audio:Jack_6.35mm_Neutrik_NMJ6HFD2_Horizontal</field>
+        <field name="Datasheet">https://www.neutrik.com/en/product/nmj6hfd2</field>
+      </fields>
+      <pins>
+        <pin num="R" name="" type="passive"/>
+        <pin num="RN" name="" type="passive"/>
+        <pin num="S" name="" type="passive"/>
+        <pin num="SN" name="" type="passive"/>
+        <pin num="T" name="" type="passive"/>
+        <pin num="TN" name="" type="passive"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="Connector_Audio">
+      <uri>C:\Program Files\KiCad\7.0\share\kicad\symbols\/Connector_Audio.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="unconnected-(J1-PadR)">
+      <node ref="J1" pin="R" pintype="passive"/>
+    </net>
+    <net code="2" name="unconnected-(J1-PadRN)">
+      <node ref="J1" pin="RN" pintype="passive"/>
+    </net>
+    <net code="3" name="unconnected-(J1-PadS)">
+      <node ref="J1" pin="S" pintype="passive"/>
+    </net>
+    <net code="4" name="unconnected-(J1-PadSN)">
+      <node ref="J1" pin="SN" pintype="passive"/>
+    </net>
+    <net code="5" name="unconnected-(J1-PadT)">
+      <node ref="J1" pin="T" pintype="passive"/>
+    </net>
+    <net code="6" name="unconnected-(J1-PadTN)">
+      <node ref="J1" pin="TN" pintype="passive"/>
+    </net>
+    <net code="7" name="unconnected-(J2-PadR)">
+      <node ref="J2" pin="R" pintype="passive"/>
+    </net>
+    <net code="8" name="unconnected-(J2-PadRN)">
+      <node ref="J2" pin="RN" pintype="passive"/>
+    </net>
+    <net code="9" name="unconnected-(J2-PadS)">
+      <node ref="J2" pin="S" pintype="passive"/>
+    </net>
+    <net code="10" name="unconnected-(J2-PadSN)">
+      <node ref="J2" pin="SN" pintype="passive"/>
+    </net>
+    <net code="11" name="unconnected-(J2-PadT)">
+      <node ref="J2" pin="T" pintype="passive"/>
+    </net>
+    <net code="12" name="unconnected-(J2-PadTN)">
+      <node ref="J2" pin="TN" pintype="passive"/>
+    </net>
+    <net code="13" name="unconnected-(J3-PadR)">
+      <node ref="J3" pin="R" pintype="passive"/>
+    </net>
+    <net code="14" name="unconnected-(J3-PadRN)">
+      <node ref="J3" pin="RN" pintype="passive"/>
+    </net>
+    <net code="15" name="unconnected-(J3-PadS)">
+      <node ref="J3" pin="S" pintype="passive"/>
+    </net>
+    <net code="16" name="unconnected-(J3-PadSN)">
+      <node ref="J3" pin="SN" pintype="passive"/>
+    </net>
+    <net code="17" name="unconnected-(J3-PadT)">
+      <node ref="J3" pin="T" pintype="passive"/>
+    </net>
+    <net code="18" name="unconnected-(J3-PadTN)">
+      <node ref="J3" pin="TN" pintype="passive"/>
+    </net>
+    <net code="19" name="unconnected-(J4-PadR)">
+      <node ref="J4" pin="R" pintype="passive"/>
+    </net>
+    <net code="20" name="unconnected-(J4-PadRN)">
+      <node ref="J4" pin="RN" pintype="passive"/>
+    </net>
+    <net code="21" name="unconnected-(J4-PadS)">
+      <node ref="J4" pin="S" pintype="passive"/>
+    </net>
+    <net code="22" name="unconnected-(J4-PadSN)">
+      <node ref="J4" pin="SN" pintype="passive"/>
+    </net>
+    <net code="23" name="unconnected-(J4-PadT)">
+      <node ref="J4" pin="T" pintype="passive"/>
+    </net>
+    <net code="24" name="unconnected-(J4-PadTN)">
+      <node ref="J4" pin="TN" pintype="passive"/>
+    </net>
+    <net code="25" name="unconnected-(J5-PadR)">
+      <node ref="J5" pin="R" pintype="passive"/>
+    </net>
+    <net code="26" name="unconnected-(J5-PadRN)">
+      <node ref="J5" pin="RN" pintype="passive"/>
+    </net>
+    <net code="27" name="unconnected-(J5-PadS)">
+      <node ref="J5" pin="S" pintype="passive"/>
+    </net>
+    <net code="28" name="unconnected-(J5-PadSN)">
+      <node ref="J5" pin="SN" pintype="passive"/>
+    </net>
+    <net code="29" name="unconnected-(J5-PadT)">
+      <node ref="J5" pin="T" pintype="passive"/>
+    </net>
+    <net code="30" name="unconnected-(J5-PadTN)">
+      <node ref="J5" pin="TN" pintype="passive"/>
+    </net>
+    <net code="31" name="unconnected-(J6-PadR)">
+      <node ref="J6" pin="R" pintype="passive"/>
+    </net>
+    <net code="32" name="unconnected-(J6-PadRN)">
+      <node ref="J6" pin="RN" pintype="passive"/>
+    </net>
+    <net code="33" name="unconnected-(J6-PadS)">
+      <node ref="J6" pin="S" pintype="passive"/>
+    </net>
+    <net code="34" name="unconnected-(J6-PadSN)">
+      <node ref="J6" pin="SN" pintype="passive"/>
+    </net>
+    <net code="35" name="unconnected-(J6-PadT)">
+      <node ref="J6" pin="T" pintype="passive"/>
+    </net>
+    <net code="36" name="unconnected-(J6-PadTN)">
+      <node ref="J6" pin="TN" pintype="passive"/>
+    </net>
+    <net code="37" name="unconnected-(J7-PadR)">
+      <node ref="J7" pin="R" pintype="passive"/>
+    </net>
+    <net code="38" name="unconnected-(J7-PadRN)">
+      <node ref="J7" pin="RN" pintype="passive"/>
+    </net>
+    <net code="39" name="unconnected-(J7-PadS)">
+      <node ref="J7" pin="S" pintype="passive"/>
+    </net>
+    <net code="40" name="unconnected-(J7-PadSN)">
+      <node ref="J7" pin="SN" pintype="passive"/>
+    </net>
+    <net code="41" name="unconnected-(J7-PadT)">
+      <node ref="J7" pin="T" pintype="passive"/>
+    </net>
+    <net code="42" name="unconnected-(J7-PadTN)">
+      <node ref="J7" pin="TN" pintype="passive"/>
+    </net>
+    <net code="43" name="unconnected-(J8-PadR)">
+      <node ref="J8" pin="R" pintype="passive"/>
+    </net>
+    <net code="44" name="unconnected-(J8-PadRN)">
+      <node ref="J8" pin="RN" pintype="passive"/>
+    </net>
+    <net code="45" name="unconnected-(J8-PadS)">
+      <node ref="J8" pin="S" pintype="passive"/>
+    </net>
+    <net code="46" name="unconnected-(J8-PadSN)">
+      <node ref="J8" pin="SN" pintype="passive"/>
+    </net>
+    <net code="47" name="unconnected-(J8-PadT)">
+      <node ref="J8" pin="T" pintype="passive"/>
+    </net>
+    <net code="48" name="unconnected-(J8-PadTN)">
+      <node ref="J8" pin="TN" pintype="passive"/>
+    </net>
+  </nets>
+</export>

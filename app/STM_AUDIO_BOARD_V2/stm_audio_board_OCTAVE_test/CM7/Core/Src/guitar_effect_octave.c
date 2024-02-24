@@ -26,6 +26,89 @@ static void set_volumes(struct octave_effects_st* self){
 	self->output_f32 += self->octave_down_1_f32 * self->volumes_st.sub_1_f32;
 }
 
+
+// SUBBAND FILTER FUNCTION - DIRECT FORM 2 - normalfunction exectime: ~6us
+static void subbandfilter_calculation(int32_t input){
+  float32_t input_f32=(float32_t)input;
+  // set d[n], d[n-1], d[n-2]
+  for(int i=0;i<numberofsubbands;i++){
+//			  subbandfilter_input[i]	= input_f32;
+			  subbandfilter_dn2[i]		= subbandfilter_dn1[i];
+			  subbandfilter_dn1[i]		= subbandfilter_dn[i];
+			  subbandfilter_dn[i]		= input_f32;
+
+  }
+  // A1 = a1*y[n-1]
+  arm_mult_f32(subbandfilter_a1, subbandfilter_yn1, subbandfilter_A1, numberofsubbands);
+  // A2 = a2*y[n-2]
+  arm_mult_f32(subbandfilter_a2, subbandfilter_yn2, subbandfilter_A2, numberofsubbands);
+
+  // A = A1+A2
+  arm_add_f32(subbandfilter_A1, subbandfilter_A2, subbandfilter_A, numberofsubbands);
+
+  // y_n=b0*d[n]+b1*d[n-1]+b2*d[n-2]
+
+  // B1 = b1*x[n-1]
+  arm_mult_f32(subbandfilter_b1, subbandfilter_dn1, subbandfilter_B1, numberofsubbands);
+  // B2 = b2*x[n-2]
+  arm_mult_f32(subbandfilter_b2, subbandfilter_dn2, subbandfilter_B2, numberofsubbands);
+  // B1+B2
+  arm_add_f32(subbandfilter_B1, subbandfilter_B2, subbandfilter_B, numberofsubbands);
+
+  // B0 = b0*x[n]
+  arm_mult_f32(subbandfilter_b0, subbandfilter_dn, subbandfilter_B0, numberofsubbands);
+
+  // y=B0+B1+B2
+  arm_add_f32(subbandfilter_B, subbandfilter_B0, subbandfilter_B, numberofsubbands);
+
+  // y[n]= B - A
+  arm_sub_f32(subbandfilter_B,subbandfilter_A, subbandfilter_output, numberofsubbands);
+  for(int i=0;i<numberofsubbands;i++){
+	  subbandfilter_yn2[i]		= subbandfilter_yn1[i];
+	  subbandfilter_yn1[i]		= subbandfilter_output[i];
+   }
+}
+
+
+void subbandfilter_octave2_calculation(int32_t input){
+  float32_t input_f32=(float32_t)input;
+  // set d[n], d[n-1], d[n-2]
+  for(int i=0;i<numberofsubbands;i++){
+			  subbandfilter_octave2_dn2[i]=subbandfilter_octave2_dn1[i];
+			  subbandfilter_octave2_dn1[i]=subbandfilter_octave2_dn[i];
+			  subbandfilter_octave2_dn[i] = input_f32;
+  }
+  // A1 = a1*y[n-1]
+  arm_mult_f32(subbandfilter_a1, subbandfilter_octave2_yn1, subbandfilter_A1, numberofsubbands);
+  // A2 = a2*y[n-2]
+  arm_mult_f32(subbandfilter_a2, subbandfilter_octave2_yn2, subbandfilter_A2, numberofsubbands);
+
+  // A = A1+A2
+  arm_add_f32(subbandfilter_A1, subbandfilter_A2, subbandfilter_A, numberofsubbands);
+
+  // y_n=b0*d[n]+b1*d[n-1]+b2*d[n-2]
+
+  // B1 = b1*x[n-1]
+  arm_mult_f32(subbandfilter_b1, subbandfilter_octave2_dn1, subbandfilter_B1, numberofsubbands);
+  // B2 = b2*x[n-2]
+  arm_mult_f32(subbandfilter_b2, subbandfilter_octave2_dn2, subbandfilter_B2, numberofsubbands);
+  // B1+B2
+  arm_add_f32(subbandfilter_B1, subbandfilter_B2, subbandfilter_B, numberofsubbands);
+
+  // B0 = b0*x[n]
+  arm_mult_f32(subbandfilter_b0, subbandfilter_octave2_dn, subbandfilter_B0, numberofsubbands);
+
+  // y=B0+B1+B2
+  arm_add_f32(subbandfilter_B, subbandfilter_B0, subbandfilter_B, numberofsubbands);
+
+  // y[n]= B - A
+  arm_sub_f32(subbandfilter_B,subbandfilter_A, subbandfilter_output, numberofsubbands);
+  for(int i=0;i<numberofsubbands;i++){
+ 			  subbandfilter_octave2_yn2[i] 	= subbandfilter_octave2_yn1[i];
+ 			  subbandfilter_octave2_yn1[i]  = subbandfilter_output[i];
+   }
+}
+
 // Calculate the octave 1 HIGHER
 static void algorithm_octave_1_up(struct octave_effects_st* self){
 	// TODO
