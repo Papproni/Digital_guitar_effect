@@ -1,4 +1,4 @@
-../Core/Src/AD1939_driver.c:4:5:ad1939_write_reg	24	static
-../Core/Src/AD1939_driver.c:20:5:ad1939_read_reg	24	static
-../Core/Src/AD1939_driver.c:35:5:ad1939_pll_locked	24	static
-../Core/Src/AD1939_driver.c:51:5:ad1939_init	32	static
+../Core/Src/AD1939_driver.c:5:5:ad1939_write_reg	24	static
+../Core/Src/AD1939_driver.c:21:5:ad1939_read_reg	24	static
+../Core/Src/AD1939_driver.c:36:5:ad1939_pll_locked	24	static
+../Core/Src/AD1939_driver.c:52:5:ad1939_init	32	static
