@@ -1,0 +1,6 @@
+[submodule "app/stm_audio_board_v3_code"]
+	path = app/stm_audio_board_v3_code
+	url = https://github.com/Papproni/stm_audio_board_v3_code.git
+[submodule "pcb/STM_AUDIO_BOARD_V3_PCB"]
+	path = pcb/STM_AUDIO_BOARD_V3_PCB
+	url = https://github.com/Papproni/STM_AUDIO_BOARD_V3_PCB.git
