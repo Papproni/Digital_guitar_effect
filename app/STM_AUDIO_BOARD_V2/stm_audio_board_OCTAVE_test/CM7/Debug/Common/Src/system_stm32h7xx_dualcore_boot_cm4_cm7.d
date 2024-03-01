@@ -1,5 +1,5 @@
 Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.o: \
- C:/Projects/git/onlab/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
+ C:/Users/Aron/Documents/GitHub/Digital_guitar_effect/app/STM_AUDIO_BOARD_V2/stm_audio_board_OCTAVE_test/Common/Src/system_stm32h7xx_dualcore_boot_cm4_cm7.c \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h7xx.h \
  ../../Drivers/CMSIS/Device/ST/STM32H7xx/Include/stm32h747xx.h \
  ../../Drivers/CMSIS/Include/core_cm7.h \

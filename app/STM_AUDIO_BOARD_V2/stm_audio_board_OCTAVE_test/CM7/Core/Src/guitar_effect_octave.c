@@ -349,7 +349,7 @@ static void algorithm_octave_1_down(struct octave_effects_st* self){
 // usefull filters
 static volatile float32_t subband_ones[numberofsubbands];
 static volatile float32_t subband_absolute_value[numberofsubbands];
-static volatile float32_t octave1_up=0.0;
+static volatile float32_t octave1_up_1=0.0;
 static volatile float32_t octave1_up_filtered=0.0;
 // octave Filter
 static arm_biquad_cascade_df2T_instance_f32 highpass_iir_50hz;
@@ -357,16 +357,17 @@ static arm_biquad_cascade_df2T_instance_f32 highpass_iir_50hz_octave2;
 static volatile float32_t highpass_coeff[5]={0.99538200, -1.99076399, 0.99538200, 1.99074267, -0.99078531};
 static volatile float32_t highpass_state[10];
 
+
 static void octave1up(struct octave_effects_st* self){
 	// get absolute values of subbands
 	arm_abs_f32(self->subbandfilter_output, subband_absolute_value, numberofsubbands);
 
 
 	// add the octave subbands together
-	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up);
+	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up_1);
 
 	// filter the DC component out
-	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz, &octave1_up, &octave1_up_filtered, 1);
+	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz, &octave1_up_1, &octave1_up_filtered, 1);
 }
 
 static void octave2up(struct octave_effects_st* self){
@@ -375,10 +376,10 @@ static void octave2up(struct octave_effects_st* self){
 
 
 	// add the octave subbands together
-	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up);
+	arm_dot_prod_f32(subband_absolute_value, subband_ones, numberofsubbands, &octave1_up_1);
 
 	// filter the DC component out
-	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz_octave2, &octave1_up, &octave1_up_filtered, 1);
+	arm_biquad_cascade_df2T_f32(&highpass_iir_50hz_octave2, &octave1_up_1, &octave1_up_filtered, 1);
 }
 static int32_t callback_octave_effect(struct octave_effects_st* self,int32_t input_i32){
 	// 1. calculate octaves
@@ -394,21 +395,18 @@ static int32_t callback_octave_effect(struct octave_effects_st* self,int32_t inp
 	subbandfilter_calculation(self);
 	octave1up(self);
 	// save result
-	float32_t octave_1_up_f32 = octave1_up_filtered;
-
+	self->octave_up_1_f32 = octave1_up_filtered;
+//
 	// +2 octave
 	subbandfilter_octave2_calculation(self);
 	octave2up(self);
 	//		 save result
-	float32_t octave_2_up_f32 = octave1_up_filtered;
+	self->octave_up_2_f32 = octave1_up_filtered;
 
 	// Write to DAC
-	volatile static float32_t passthrough_volume = 0.3;
-	volatile static float32_t octave_1_volume = 4;
-	volatile static float32_t octave_2_volume = 4;
 	self->output_f32 =	(int32_t)self->octave_up_1_f32*self->volumes_st.up_1_f32 +
 						(int32_t)self->octave_up_2_f32*self->volumes_st.up_2_f32 +
-						(int32_t)((float32_t)input_i32*passthrough_volume);
+						(int32_t)(self->input_f32*self->volumes_st.clean_f32);
 
 	return self->output_f32;
 }
@@ -416,9 +414,33 @@ static int32_t callback_octave_effect(struct octave_effects_st* self,int32_t inp
 
 void init_guitar_effect_octave(octave_effects_tst* self){
 
+	  arm_biquad_cascade_df2T_init_f32(&highpass_iir_50hz, 1, &highpass_coeff, &highpass_state);
+	  arm_biquad_cascade_df2T_init_f32(&highpass_iir_50hz_octave2, 1, &highpass_coeff, &highpass_state);
 	// assign function pointers
 	self->set_volumes			= set_volumes;
 	self->calc_octave_1_up 		= algorithm_octave_1_down;
 	self->calc_octave_1_down 	= algorithm_octave_1_up;
 	self->callback 				= callback_octave_effect;
+
+	self->volumes_st.up_1_f32 = 1;
+	self->volumes_st.up_2_f32 = 1;
+	self->volumes_st.clean_f32      = 1;
+	for(int i=0; i<numberofsubbands;i++){
+		subband_ones[i] = 1;
+		self->subbandfilter_dn2[i]		=	0;
+		self->subbandfilter_dn1[i]		=	0;
+		self->subbandfilter_dn[i]		=	0;
+		self->subbandfilter_yn1[i] 		= 	0;
+		self->subbandfilter_yn2[i] 		= 	0;
+
+		self->subbandfilter_octave2_dn[i]		=	0;
+		self->subbandfilter_octave2_dn1[i]		=	0;
+		self->subbandfilter_octave2_dn2[i]		=	0;
+		self->subbandfilter_octave2_yn1[i] 		= 	0;
+		self->subbandfilter_octave2_yn2[i] 		= 	0;
+	}
+
+	// zero out the IIR filter states
+
+
 }

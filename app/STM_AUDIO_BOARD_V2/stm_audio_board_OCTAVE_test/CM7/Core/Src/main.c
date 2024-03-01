@@ -79,19 +79,63 @@ static void MX_I2S1_Init(void);
 /* USER CODE BEGIN 0 */
 
 
-volatile int BufSize = 6000;
-volatile int Overlap = 3000;
+volatile int BufSize = 5000;
+volatile int Overlap = 500;
 
 volatile int Buf[10000];
 
 volatile int WtrP;
 volatile float Rd_P;
 volatile float CrossFade;
+float a0, a1, a2, b1, b2, hp_in_z1, hp_in_z2, hp_out_z1, hp_out_z2;
+
+int Do_HighPass (int inSample) {
+	//	500hz high-pass, 48k
+		a0 = 0.9547676565107223;
+		a1 = -1.9095353130214445;
+		a2 = 0.9547676565107223;
+		b1 =-1.9074888914066748;
+		b2 =0.9115817346362142;
+////	3khz high-pass, 96k
+//	a0 = 0.9907853255903974;
+//	a1 = -1.981570651180795;
+//	a2 = 0.9907853255903974;
+//	b1 = -1.9814857645620922;
+//	b2 = 0.9816555377994975;
+//
+//	a0 = 0.3009556244638557;
+//	a1 = 0;
+//	a2 = -0.3009556244638557;
+//	b1 = -1.1091783806868014;
+//	b2 = 0.39808875107228864;
+
+	// 10khz LOWPASS
+//	a0 = 0.22018120452501466;
+//	a1 = 0.4403624090500293;
+//	a2 = 0.22018120452501466;
+//	b1 = -0.3075475090293954;
+//	b2 = 0.18827232712945405;
 
 
+	float inSampleF = (float)inSample;
+	float outSampleF =
+			a0 * inSampleF
+			+ a1 * hp_in_z1
+			+ a2 * hp_in_z2
+			- b1 * hp_out_z1
+			- b2 * hp_out_z2;
+	hp_in_z2 = hp_in_z1;
+	hp_in_z1 = inSampleF;
+	hp_out_z2 = hp_out_z1;
+	hp_out_z1 = outSampleF;
+
+	return (int) outSampleF;
+}
+float Shift = 1.5;//1.189207115002721;
 int Do_PitchShift(int sample) {
-	static float Shift = 0.5;
-	int sum = sample;
+
+	int sum = Do_HighPass(sample);
+//	 sum = sample;
 	//sum up and do high-pass
 
 
@@ -575,7 +619,8 @@ void HAL_I2S_TxCpltCallback(I2S_HandleTypeDef *hi2s){
 //	my_data[7] = out3;
 }
 
-
+delay_effects_tst delay_effect;
+octave_effects_tst octave_effects_st;
 
 /* USER CODE END 0 */
 
@@ -591,6 +636,7 @@ int main(void)
 /* USER CODE BEGIN Boot_Mode_Sequence_0 */
   int32_t timeout;
 /* USER CODE END Boot_Mode_Sequence_0 */
+/* Enable the CPU Cache */
 
   /* Enable I-Cache---------------------------------------------------------*/
   SCB_EnableICache();
@@ -689,10 +735,13 @@ HSEM notification */
 //  for(uint8_t i = 0; i<numberofsubbands;i++){
 //	  subband_ones[i] = 1.0;
 //  }
+
+
   // init AD and DA
+  ad1939_init(&hspi3);
   HAL_I2S_Transmit_DMA(	&hi2s2, 	my_data, 		4);
   HAL_I2S_Receive_DMA(	&hi2s1, 	rx_data_i2s, 	4);
-  ad1939_init(&hspi3);
+
 
 
 //  HAL_I2S_Receive(&hi2s1, rx_data_i2s, 4);
@@ -712,9 +761,9 @@ HSEM notification */
 
   uint8_t channel = 0;
 
-  delay_effects_tst delay_effect;
+
   init_guitar_effect_delay(&delay_effect);
-  octave_effects_tst octave_effects_st;
+
   init_guitar_effect_octave(&octave_effects_st);
   float32_t freq_f32 = 4.0;
 
@@ -756,50 +805,57 @@ HSEM notification */
 //						(int32_t)((float32_t)value_from_ADC*passthrough_volume);
 
 //		output_buffer.value=output_test_ac;
-//		output_buffer.value= Do_PitchShift(value_from_ADC) + output_test_ac;
+
+//		output_buffer.value= Do_PitchShift(value_from_ADC) + value_from_ADC;
+		output_buffer.value =octave_effects_st.callback(&octave_effects_st,value_from_ADC);
+		output_buffer.value= Do_PitchShift(value_from_ADC) + output_buffer.value;
+//		output_buffer.value =value_from_ADC;// octave_effects_st.callback(&octave_effects_st,value_from_ADC);
+
+
 //		output_buffer.value = value_from_ADC;
 
-		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
+
 //
 		// tremolo
+		float len = 5000;
+		if (sin(freq_f32*6.28*n/len) > 0){
+			mul_val_f32 = 1;
+		}
+		if(value_from_ADC>0x1FFFFF00){
+			len_f32 = 500;
+		}else{
+			len_f32 += 0.1;
+		}
+		if( len_f32 > 10000){
+			len_f32  = 10000;
+		}
 
-//		if (sin(freq_f32*6.28*n/len) > 0){
-//			mul_val_f32 = 1;
-//		}
-//		if(value_from_ADC>0x1FFFFF00){
-//			len_f32 = 500;
-//		}else{
-//			len_f32 += 0.1;
-//		}
-//		if( len_f32 > 10000){
-//			len_f32  = 10000;
-//		}
-//
-//		if(state){
-//			mul_val_f32=(float)n_2/len_f32;
-//			n_2=n_2+1;
-//		}else{
-//			mul_val_f32=(float)n_2/len_f32;
-//			n_2= n_2-1;
-//		}
-//
-//		if(n_2>=len_f32){
-//			state= 0;
-//		}
-//		if(n_2 == 0){
-//			state=1;
-//		}
-//
-//		if(mul_val_f32 >1.0){
-//			mul_val_f32 = 1.0;
-//		}
-//
-//		//mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
-//		output_buffer.value = (int32_t)((float32_t)output_test_ac * mul_val_f32);
-//		if(abs(output_test_ac)<abs(output_buffer.value)){
+		if(state){
+			mul_val_f32=(float)n_2/len_f32;
+			n_2=n_2+1;
+		}else{
+			mul_val_f32=(float)n_2/len_f32;
+			n_2= n_2-1;
+		}
+
+		if(n_2>=len_f32){
+			state= 0;
+		}
+		if(n_2 == 0){
+			state=1;
+		}
+
+		if(mul_val_f32 >1.0){
+			mul_val_f32 = 1.0;
+		}
+
+		mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
+		output_buffer.value = (int32_t)((float32_t)output_buffer.value * mul_val_f32);
+//		if(0x000F00000<abs(output_buffer.value)){
 //			len_f32 = 9999;
 //		}
 
+		output_buffer.value = delay_effect.callback(&delay_effect,output_buffer.value);
 
 //		output_buffer.value = Do_PitchShift(value_from_ADC);
 //		output_buffer.value = output_test_ac;
@@ -814,8 +870,10 @@ HSEM notification */
 		}
 
 
-//		SCB_InvalidateDCache();
+
 	  }
+
+
 
     /* USER CODE END WHILE */
 
