@@ -807,8 +807,12 @@ HSEM notification */
 //		output_buffer.value=output_test_ac;
 
 //		output_buffer.value= Do_PitchShift(value_from_ADC) + value_from_ADC;
+		// OCTAVE UP SYNTH
 		output_buffer.value =octave_effects_st.callback(&octave_effects_st,value_from_ADC);
+		// HAMRONIZER
 		output_buffer.value= Do_PitchShift(value_from_ADC) + output_buffer.value;
+		// DELAY
+		output_buffer.value = delay_effect.callback(&delay_effect,value_from_ADC);
 //		output_buffer.value =value_from_ADC;// octave_effects_st.callback(&octave_effects_st,value_from_ADC);
 
 
@@ -817,45 +821,45 @@ HSEM notification */
 
 //
 		// tremolo
-		float len = 5000;
-		if (sin(freq_f32*6.28*n/len) > 0){
-			mul_val_f32 = 1;
-		}
-		if(value_from_ADC>0x1FFFFF00){
-			len_f32 = 500;
-		}else{
-			len_f32 += 0.1;
-		}
-		if( len_f32 > 10000){
-			len_f32  = 10000;
-		}
-
-		if(state){
-			mul_val_f32=(float)n_2/len_f32;
-			n_2=n_2+1;
-		}else{
-			mul_val_f32=(float)n_2/len_f32;
-			n_2= n_2-1;
-		}
-
-		if(n_2>=len_f32){
-			state= 0;
-		}
-		if(n_2 == 0){
-			state=1;
-		}
-
-		if(mul_val_f32 >1.0){
-			mul_val_f32 = 1.0;
-		}
-
-		mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
-		output_buffer.value = (int32_t)((float32_t)output_buffer.value * mul_val_f32);
+//		float len = 5000;
+//		if (sin(freq_f32*6.28*n/len) > 0){
+//			mul_val_f32 = 1;
+//		}
+//		if(value_from_ADC>0x1FFFFF00){
+//			len_f32 = 500;
+//		}else{
+//			len_f32 += 0.1;
+//		}
+//		if( len_f32 > 10000){
+//			len_f32  = 10000;
+//		}
+//
+//		if(state){
+//			mul_val_f32=(float)n_2/len_f32;
+//			n_2=n_2+1;
+//		}else{
+//			mul_val_f32=(float)n_2/len_f32;
+//			n_2= n_2-1;
+//		}
+//
+//		if(n_2>=len_f32){
+//			state= 0;
+//		}
+//		if(n_2 == 0){
+//			state=1;
+//		}
+//
+//		if(mul_val_f32 >1.0){
+//			mul_val_f32 = 1.0;
+//		}
+//
+//		mul_val_f32 +=(sin(freq_f32*6.28*n/len_f32)>0-0.5)/(float)len;
+//		output_buffer.value = (int32_t)((float32_t)output_buffer.value * mul_val_f32);
 //		if(0x000F00000<abs(output_buffer.value)){
 //			len_f32 = 9999;
 //		}
 
-		output_buffer.value = delay_effect.callback(&delay_effect,output_buffer.value);
+
 
 //		output_buffer.value = Do_PitchShift(value_from_ADC);
 //		output_buffer.value = output_test_ac;

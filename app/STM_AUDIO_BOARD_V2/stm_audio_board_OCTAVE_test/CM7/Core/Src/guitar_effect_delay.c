@@ -91,13 +91,13 @@ static int32_t callback(struct delay_effects_st* self,int32_t input_signal_i32){
 void init_guitar_effect_delay(struct delay_effects_st* self){
 
 	// set basic parameters
-	self->parameters_st.time_in_buffer_u32 			= DELAY_BUFFER_LENGTH - DELAY_BUFFER_LENGTH / 16;	// 12ms delay
+	self->parameters_st.time_in_buffer_u32 			= 80000;	// 12ms delay
 	self->modulation_on_u8 							= 0;
 	self->parameters_st.modulation_counter_u32 		= 0;
 	self->parameters_st.modulation_in_buffer_u32 	= 25000;						// 1ms
 	self->parameters_st.modulation_amplitude_i32	= 20;
 	self->parameters_st.modulation_base_u32			= 50;
-	self->parameters_st.mix_f32						= 0.5; 		// 50%
+	self->parameters_st.mix_f32						= 0.3; 		// 50%
 	self->parameters_st.feedback_gain_f32			= 0.5; 		// 50%
 
 
